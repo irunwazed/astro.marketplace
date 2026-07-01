@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/features/Navbar.astro";
+import Card from "../components/ui/Card.astro";
+import ProfileForm from "../components/react/ProfileForm";
+import { user } from "../data/user";
+---
+
+<Layout title="Profil - fe-marketplace">
+  <Navbar />
+  <main class="mx-auto max-w-md px-4 py-16">
+    <div class="mb-6 flex flex-col items-center gap-3">
+      <img src={user.avatar} alt={user.name} class="h-20 w-20 rounded-full" />
+      <div class="text-center">
+        <p class="text-lg font-semibold">{user.name}</p>
+        <p class="text-sm text-slate-600">{user.email}</p>
+      </div>
+    </div>
+    <Card class="p-6">
+      <ProfileForm user={user} client:load />
+    </Card>
+  </main>
+</Layout>

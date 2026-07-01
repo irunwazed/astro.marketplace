@@ -1,0 +1,16 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/features/Navbar.astro";
+import Card from "../components/ui/Card.astro";
+import LoginForm from "../components/react/LoginForm";
+---
+
+<Layout title="Login - fe-marketplace">
+  <Navbar />
+  <main class="mx-auto flex max-w-md flex-col px-4 py-16">
+    <h1 class="mb-6 text-center text-2xl font-bold">Login</h1>
+    <Card class="p-6">
+      <LoginForm client:load />
+    </Card>
+  </main>
+</Layout>

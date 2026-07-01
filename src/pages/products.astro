@@ -1,0 +1,14 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/features/Navbar.astro";
+import ProductGrid from "../components/features/products/ProductGrid.astro";
+import { products } from "../data/products";
+---
+
+<Layout title="Produk - fe-marketplace">
+  <Navbar />
+  <main class="mx-auto max-w-5xl px-4 py-16">
+    <h1 class="mb-6 text-2xl font-bold">Produk</h1>
+    <ProductGrid products={products} />
+  </main>
+</Layout>

@@ -1,17 +1,21 @@
 ---
-
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/features/Navbar.astro";
+import Button from "../components/ui/Button.astro";
+import Counter from "../components/react/Counter";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="fe-marketplace">
+  <Navbar />
+  <main class="mx-auto max-w-5xl px-4 py-16">
+    <h1 class="text-3xl font-bold">Base Template</h1>
+    <p class="mt-2 text-slate-600">
+      Astro + Tailwind CSS + React, siap dipakai untuk latihan fitur marketplace.
+    </p>
+    <div class="mt-8 flex items-center gap-4">
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Counter client:visible />
+    </div>
+  </main>
+</Layout>
