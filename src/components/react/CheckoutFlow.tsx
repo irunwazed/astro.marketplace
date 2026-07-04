@@ -65,7 +65,7 @@ export default function CheckoutFlow({ dropPoints }: Props) {
         <p className="mt-1 text-sm text-moss">Keranjang Anda kosong.</p>
         <a
           href="/products"
-          className="mt-5 inline-block rounded-full bg-forest px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-forest-dark"
+          className="mt-5 inline-block rounded-full bg-brand px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
         >
           Lihat Produk
         </a>
@@ -150,7 +150,7 @@ export default function CheckoutFlow({ dropPoints }: Props) {
     return (
       <div className="rounded-xl border border-ink/10 bg-white p-8 text-center shadow-sm shadow-ink/5">
         <span
-          className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-forest text-white"
+          className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand text-white"
           aria-hidden="true"
         >
           <svg
@@ -174,13 +174,13 @@ export default function CheckoutFlow({ dropPoints }: Props) {
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           <a
             href={`/orders/lacak?id=${pendingOrder?.id ?? ""}`}
-            className="rounded-full bg-forest px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-forest-dark"
+            className="rounded-full bg-brand px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
           >
             Lihat Proses Pesanan
           </a>
           <a
             href="/products"
-            className="rounded-full border border-ink/10 bg-white px-5 py-2 text-sm font-semibold text-ink transition-colors hover:border-forest hover:text-forest"
+            className="rounded-full border border-ink/10 bg-white px-5 py-2 text-sm font-semibold text-ink transition-colors hover:border-brand hover:text-brand"
           >
             Belanja Lagi
           </a>
@@ -199,7 +199,7 @@ export default function CheckoutFlow({ dropPoints }: Props) {
       <div>
         <StepIndicator current="qris" />
         <div className="mx-auto mt-6 max-w-sm overflow-hidden rounded-2xl border border-ink/10 bg-white text-center shadow-sm shadow-ink/5">
-          <div className="bg-forest-deep px-6 py-4 text-white">
+          <div className="bg-brand-deep px-6 py-4 text-white">
             <p className="font-display text-lg font-bold tracking-wide">QRIS</p>
             <p className="text-[11px] uppercase tracking-[0.18em] text-white/60">
               Quick Response Code Indonesian Standard
@@ -214,7 +214,7 @@ export default function CheckoutFlow({ dropPoints }: Props) {
             <p
               className={cn(
                 "mx-auto mt-2 w-fit rounded-full px-3 py-1 text-xs font-bold",
-                expired ? "bg-terracotta/15 text-terracotta" : "bg-amber/15 text-amber-deep",
+                expired ? "bg-rose/15 text-rose" : "bg-amber/15 text-amber-deep",
               )}
               aria-live="polite"
             >
@@ -231,7 +231,7 @@ export default function CheckoutFlow({ dropPoints }: Props) {
               <button
                 type="button"
                 onClick={() => setSecondsLeft(QR_TIMEOUT)}
-                className="mt-4 w-full rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-forest-dark"
+                className="mt-4 w-full rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
               >
                 Buat Ulang Kode QR
               </button>
@@ -240,7 +240,7 @@ export default function CheckoutFlow({ dropPoints }: Props) {
                 type="button"
                 onClick={handlePaid}
                 disabled={busy}
-                className="mt-4 w-full rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-forest-dark disabled:cursor-wait disabled:opacity-60"
+                className="mt-4 w-full rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-dark disabled:cursor-wait disabled:opacity-60"
               >
                 {busy ? "Memeriksa pembayaran…" : "Saya sudah membayar"}
               </button>
@@ -248,7 +248,7 @@ export default function CheckoutFlow({ dropPoints }: Props) {
             <button
               type="button"
               onClick={() => setStep("pembayaran")}
-              className="mt-2 w-full rounded-full px-5 py-2 text-sm font-semibold text-moss transition-colors hover:text-forest"
+              className="mt-2 w-full rounded-full px-5 py-2 text-sm font-semibold text-moss transition-colors hover:text-brand"
             >
               ← Ganti metode pembayaran
             </button>
@@ -278,8 +278,8 @@ export default function CheckoutFlow({ dropPoints }: Props) {
                       "flex items-center gap-3 rounded-lg border p-3.5 transition-colors",
                       !p.available && "cursor-not-allowed opacity-50",
                       p.available && "cursor-pointer",
-                      payment === p.id ? "border-forest bg-forest/5" : "border-ink/10",
-                      p.available && payment !== p.id && "hover:border-forest/50",
+                      payment === p.id ? "border-brand bg-brand/5" : "border-ink/10",
+                      p.available && payment !== p.id && "hover:border-brand/50",
                     )}
                   >
                     <input
@@ -288,14 +288,14 @@ export default function CheckoutFlow({ dropPoints }: Props) {
                       checked={payment === p.id}
                       disabled={!p.available}
                       onChange={() => setPayment(p.id)}
-                      className="h-4 w-4 accent-forest"
+                      className="h-4 w-4 accent-brand"
                     />
                     <span className="flex-1">
                       <span className="block text-sm font-semibold">{p.label}</span>
                       <span className="block text-xs text-moss">{p.hint}</span>
                     </span>
                     {p.id === "qris" && (
-                      <span className="rounded-md bg-forest-deep px-2 py-1 font-display text-xs font-bold text-white">
+                      <span className="rounded-md bg-brand-deep px-2 py-1 font-display text-xs font-bold text-white">
                         QRIS
                       </span>
                     )}
@@ -306,7 +306,7 @@ export default function CheckoutFlow({ dropPoints }: Props) {
             <button
               type="button"
               onClick={() => setStep("pengiriman")}
-              className="mt-4 text-sm font-semibold text-moss transition-colors hover:text-forest"
+              className="mt-4 text-sm font-semibold text-moss transition-colors hover:text-brand"
             >
               ← Kembali ke pengiriman
             </button>
@@ -317,7 +317,7 @@ export default function CheckoutFlow({ dropPoints }: Props) {
               type="button"
               onClick={finishCheckout}
               disabled={busy}
-              className="mt-4 w-full rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-forest-dark disabled:cursor-wait disabled:opacity-60"
+              className="mt-4 w-full rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-dark disabled:cursor-wait disabled:opacity-60"
             >
               {busy ? "Membuat pesanan…" : "Selesaikan Checkout"}
             </button>
@@ -349,8 +349,8 @@ export default function CheckoutFlow({ dropPoints }: Props) {
                     className={cn(
                       "flex cursor-pointer items-start gap-3 rounded-lg border p-3 transition-colors",
                       dropPointId === dp.id
-                        ? "border-forest bg-forest/5"
-                        : "border-ink/10 hover:border-forest/50",
+                        ? "border-brand bg-brand/5"
+                        : "border-ink/10 hover:border-brand/50",
                     )}
                   >
                     <input
@@ -358,7 +358,7 @@ export default function CheckoutFlow({ dropPoints }: Props) {
                       name="dropPoint"
                       checked={dropPointId === dp.id}
                       onChange={() => setDropPointId(dp.id)}
-                      className="mt-0.5 h-4 w-4 accent-forest"
+                      className="mt-0.5 h-4 w-4 accent-brand"
                     />
                     <span>
                       <span className="block text-sm font-semibold">{dp.name}</span>
@@ -388,7 +388,7 @@ export default function CheckoutFlow({ dropPoints }: Props) {
                   value={building}
                   onChange={(e) => setBuilding(e.target.value)}
                   placeholder="mis. Gedung A / Kantor Koperasi"
-                  className="w-full rounded-md border border-ink/15 px-3 py-2 text-sm outline-none focus:border-forest focus:ring-2 focus:ring-forest/20"
+                  className="w-full rounded-md border border-ink/15 px-3 py-2 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20"
                 />
               </div>
               <div>
@@ -400,7 +400,7 @@ export default function CheckoutFlow({ dropPoints }: Props) {
                   value={floor}
                   onChange={(e) => setFloor(e.target.value)}
                   placeholder="mis. 3"
-                  className="w-full rounded-md border border-ink/15 px-3 py-2 text-sm outline-none focus:border-forest focus:ring-2 focus:ring-forest/20"
+                  className="w-full rounded-md border border-ink/15 px-3 py-2 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20"
                 />
               </div>
               <div className="sm:col-span-2">
@@ -412,7 +412,7 @@ export default function CheckoutFlow({ dropPoints }: Props) {
                   value={room}
                   onChange={(e) => setRoom(e.target.value)}
                   placeholder="mis. Ruang Sekretariat / R.301"
-                  className="w-full rounded-md border border-ink/15 px-3 py-2 text-sm outline-none focus:border-forest focus:ring-2 focus:ring-forest/20"
+                  className="w-full rounded-md border border-ink/15 px-3 py-2 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20"
                 />
               </div>
               <div className="sm:col-span-3">
@@ -425,7 +425,7 @@ export default function CheckoutFlow({ dropPoints }: Props) {
                   onChange={(e) => setNote(e.target.value)}
                   rows={2}
                   placeholder="mis. Titip ke resepsionis bila penerima tidak di tempat"
-                  className="w-full rounded-md border border-ink/15 px-3 py-2 text-sm outline-none focus:border-forest focus:ring-2 focus:ring-forest/20"
+                  className="w-full rounded-md border border-ink/15 px-3 py-2 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20"
                 />
               </div>
             </div>
@@ -441,7 +441,7 @@ export default function CheckoutFlow({ dropPoints }: Props) {
             onClick={goToPayment}
             className={cn(
               "mt-4 w-full rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-colors",
-              shippingComplete ? "bg-forest hover:bg-forest-dark" : "cursor-not-allowed bg-ink/20",
+              shippingComplete ? "bg-brand hover:bg-brand-dark" : "cursor-not-allowed bg-ink/20",
             )}
           >
             Lanjut ke Pembayaran
@@ -453,7 +453,7 @@ export default function CheckoutFlow({ dropPoints }: Props) {
           )}
           <a
             href="/cart"
-            className="mt-2 block text-center text-xs font-semibold text-moss transition-colors hover:text-forest"
+            className="mt-2 block text-center text-xs font-semibold text-moss transition-colors hover:text-brand"
           >
             ← Ubah isi keranjang
           </a>
@@ -476,15 +476,15 @@ function StepIndicator({ current }: { current: Step }) {
           <li key={s.id} className="flex items-center gap-2 sm:gap-3">
             {i > 0 && (
               <span
-                className={cn("h-0.5 w-6 sm:w-10", done || active ? "bg-forest" : "bg-ink/15")}
+                className={cn("h-0.5 w-6 sm:w-10", done || active ? "bg-brand" : "bg-ink/15")}
                 aria-hidden="true"
               />
             )}
             <span
               className={cn(
                 "flex items-center gap-2 rounded-full py-1 pl-1 pr-3 text-xs font-semibold",
-                active && "bg-forest text-white",
-                done && "text-forest",
+                active && "bg-brand text-white",
+                done && "text-brand",
                 !active && !done && "text-moss",
               )}
               aria-current={active ? "step" : undefined}
@@ -493,7 +493,7 @@ function StepIndicator({ current }: { current: Step }) {
                 className={cn(
                   "flex h-6 w-6 items-center justify-center rounded-full text-[11px] font-bold",
                   active && "bg-white/20 text-white",
-                  done && "bg-forest text-white",
+                  done && "bg-brand text-white",
                   !active && !done && "border border-ink/20 text-moss",
                 )}
                 aria-hidden="true"
@@ -542,7 +542,7 @@ function SummaryAside({
       <dl className="mt-2 space-y-1.5 border-t border-ink/10 pt-2 text-sm">
         <div className="flex justify-between">
           <dt className="text-moss">Ongkir</dt>
-          <dd className="font-semibold text-forest">Gratis</dd>
+          <dd className="font-semibold text-brand">Gratis</dd>
         </div>
         <div className="flex justify-between">
           <dt className="font-semibold">Total</dt>
@@ -568,9 +568,9 @@ function QrMock() {
   }
   const finder = (x: number, y: number) => (
     <g>
-      <rect x={x} y={y} width={7 * cell} height={7 * cell} fill="#1f2b25" />
+      <rect x={x} y={y} width={7 * cell} height={7 * cell} fill="#1b2b38" />
       <rect x={x + cell} y={y + cell} width={5 * cell} height={5 * cell} fill="#ffffff" />
-      <rect x={x + 2 * cell} y={y + 2 * cell} width={3 * cell} height={3 * cell} fill="#1f2b25" />
+      <rect x={x + 2 * cell} y={y + 2 * cell} width={3 * cell} height={3 * cell} fill="#1b2b38" />
     </g>
   );
   return (
@@ -583,7 +583,7 @@ function QrMock() {
     >
       <rect width={n * cell} height={n * cell} fill="#ffffff" />
       {modules.map(({ r, c }) => (
-        <rect key={`${r}-${c}`} x={c * cell} y={r * cell} width={cell} height={cell} fill="#1f2b25" />
+        <rect key={`${r}-${c}`} x={c * cell} y={r * cell} width={cell} height={cell} fill="#1b2b38" />
       ))}
       {finder(0, 0)}
       {finder((n - 7) * cell, 0)}

@@ -32,7 +32,7 @@ export default function HeaderActions() {
       <button
         type="button"
         aria-label="Wishlist"
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 text-ink transition-colors hover:border-forest hover:text-forest"
+        className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 text-ink transition-colors hover:border-brand hover:text-brand"
       >
         <svg
           className="h-4.5 w-4.5"
@@ -50,7 +50,7 @@ export default function HeaderActions() {
       <a
         href="/cart"
         aria-label={`Keranjang, ${count} item`}
-        className="relative flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 text-ink transition-colors hover:border-forest hover:text-forest"
+        className="relative flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 text-ink transition-colors hover:border-brand hover:text-brand"
       >
         <svg
           className="h-4.5 w-4.5"
@@ -68,7 +68,7 @@ export default function HeaderActions() {
         </svg>
         {count > 0 && (
           <span
-            className="absolute -right-0.5 -top-0.5 flex h-4.5 min-w-4.5 items-center justify-center rounded-full bg-terracotta px-1 text-[10px] font-bold text-white"
+            className="absolute -right-0.5 -top-0.5 flex h-4.5 min-w-4.5 items-center justify-center rounded-full bg-rose px-1 text-[10px] font-bold text-white"
             aria-hidden="true"
           >
             {count}
@@ -78,10 +78,10 @@ export default function HeaderActions() {
       {session ? (
         <a
           href="/profile"
-          className="flex items-center gap-2 rounded-full border border-ink/10 py-1 pl-1 pr-3 transition-colors hover:border-forest"
+          className="flex items-center gap-2 rounded-full border border-ink/10 py-1 pl-1 pr-3 transition-colors hover:border-brand"
         >
           <span
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-forest text-xs font-bold text-white"
+            className="flex h-8 w-8 items-center justify-center rounded-full bg-brand text-xs font-bold text-white"
             aria-hidden="true"
           >
             {initialsOf(session.name)}
@@ -91,7 +91,7 @@ export default function HeaderActions() {
       ) : (
         <a
           href="/login"
-          className="rounded-full bg-forest px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-forest-dark"
+          className="rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
         >
           Masuk
         </a>

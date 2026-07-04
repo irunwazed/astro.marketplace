@@ -22,7 +22,7 @@ export default function CartView() {
         <p className="mt-1 text-sm text-moss">Yuk mulai belanja produk UMKM anggota koperasi.</p>
         <a
           href="/products"
-          className="mt-5 inline-block rounded-full bg-forest px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-forest-dark"
+          className="mt-5 inline-block rounded-full bg-brand px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
         >
           Lihat Produk
         </a>
@@ -47,7 +47,7 @@ export default function CartView() {
               <p className="truncate text-sm font-semibold">
                 <a
                   href={`/products/${item.productId}`}
-                  className="transition-colors hover:text-forest"
+                  className="transition-colors hover:text-brand"
                 >
                   {item.name}
                 </a>
@@ -66,7 +66,7 @@ export default function CartView() {
                 type="button"
                 aria-label={`Kurangi jumlah ${item.name}`}
                 onClick={() => updateQty(item.productId, item.qty - 1)}
-                className="flex h-7 w-7 items-center justify-center rounded-full border border-ink/15 text-sm font-bold transition-colors hover:border-forest hover:text-forest"
+                className="flex h-7 w-7 items-center justify-center rounded-full border border-ink/15 text-sm font-bold transition-colors hover:border-brand hover:text-brand"
               >
                 −
               </button>
@@ -78,7 +78,7 @@ export default function CartView() {
                 aria-label={`Tambah jumlah ${item.name}`}
                 onClick={() => updateQty(item.productId, item.qty + 1)}
                 disabled={item.stock !== undefined && item.qty >= item.stock}
-                className="flex h-7 w-7 items-center justify-center rounded-full border border-ink/15 text-sm font-bold transition-colors hover:border-forest hover:text-forest disabled:cursor-not-allowed disabled:opacity-40"
+                className="flex h-7 w-7 items-center justify-center rounded-full border border-ink/15 text-sm font-bold transition-colors hover:border-brand hover:text-brand disabled:cursor-not-allowed disabled:opacity-40"
               >
                 +
               </button>
@@ -87,7 +87,7 @@ export default function CartView() {
               type="button"
               aria-label={`Hapus ${item.name} dari keranjang`}
               onClick={() => removeFromCart(item.productId)}
-              className="text-moss transition-colors hover:text-terracotta"
+              className="text-moss transition-colors hover:text-rose"
             >
               <svg
                 className="h-4.5 w-4.5"
@@ -114,7 +114,7 @@ export default function CartView() {
           </div>
           <div className="flex justify-between">
             <dt className="text-moss">Ongkir ke drop point</dt>
-            <dd className="font-semibold text-forest">Gratis</dd>
+            <dd className="font-semibold text-brand">Gratis</dd>
           </div>
           <div className="flex justify-between border-t border-ink/10 pt-2">
             <dt className="font-semibold">Subtotal</dt>
@@ -123,7 +123,7 @@ export default function CartView() {
         </dl>
         <a
           href="/checkout"
-          className="mt-4 block rounded-full bg-forest px-5 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-forest-dark"
+          className="mt-4 block rounded-full bg-brand px-5 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
         >
           Lanjut ke Checkout
         </a>

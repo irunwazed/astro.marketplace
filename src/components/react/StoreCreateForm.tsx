@@ -48,7 +48,7 @@ export default function StoreCreateForm() {
           onChange={(e) => setDescription(e.target.value)}
           rows={3}
           placeholder="Ceritakan produk apa yang dijual toko Anda"
-          className="w-full rounded-md border border-ink/15 px-3 py-2 text-sm outline-none focus:border-forest focus:ring-2 focus:ring-forest/20"
+          className="w-full rounded-md border border-ink/15 px-3 py-2 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20"
         />
         {errors.description && <p className="mt-1 text-xs text-red-600">{errors.description}</p>}
       </div>
@@ -62,18 +62,18 @@ export default function StoreCreateForm() {
           type="file"
           accept="image/*"
           onChange={(e) => setLogoName(e.target.files?.[0]?.name ?? "")}
-          className="w-full rounded-md border border-ink/15 px-3 py-2 text-sm text-moss outline-none file:mr-3 file:rounded-full file:border-0 file:bg-forest/10 file:px-3 file:py-1 file:text-xs file:font-semibold file:text-forest focus:border-forest focus:ring-2 focus:ring-forest/20"
+          className="w-full rounded-md border border-ink/15 px-3 py-2 text-sm text-moss outline-none file:mr-3 file:rounded-full file:border-0 file:bg-brand/10 file:px-3 file:py-1 file:text-xs file:font-semibold file:text-brand focus:border-brand focus:ring-2 focus:ring-brand/20"
         />
         {logoName && <p className="mt-1 text-xs text-moss">Terpilih: {logoName}</p>}
       </div>
       <button
         type="submit"
-        className="w-full rounded-md bg-forest px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-forest-dark"
+        className="w-full rounded-md bg-brand px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
       >
         Buat Toko
       </button>
       {success && (
-        <p className="text-sm text-forest">
+        <p className="text-sm text-brand">
           Toko berhasil dibuat (demo) — Anda menjadi owner.{" "}
           <a href="/toko/kelola" className="font-semibold underline">
             Kelola toko sekarang

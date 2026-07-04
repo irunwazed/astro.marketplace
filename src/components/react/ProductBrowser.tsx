@@ -93,7 +93,7 @@ export default function ProductBrowser({ products }: Props) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Cari beras, kopi, kerajinan, sembako..."
-            className="w-full rounded-full border border-ink/10 bg-white py-2.5 pl-11 pr-4 text-sm outline-none transition-colors placeholder:text-moss focus:border-forest focus:ring-2 focus:ring-forest/20"
+            className="w-full rounded-full border border-ink/10 bg-white py-2.5 pl-11 pr-4 text-sm outline-none transition-colors placeholder:text-moss focus:border-brand focus:ring-2 focus:ring-brand/20"
           />
         </div>
         <div>
@@ -104,7 +104,7 @@ export default function ProductBrowser({ products }: Props) {
             id="product-sort"
             value={sort}
             onChange={(e) => setSort(e.target.value as Sort)}
-            className="w-full cursor-pointer rounded-full border border-ink/10 bg-white px-4 py-2.5 text-sm outline-none transition-colors focus:border-forest focus:ring-2 focus:ring-forest/20 sm:w-auto"
+            className="w-full cursor-pointer rounded-full border border-ink/10 bg-white px-4 py-2.5 text-sm outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20 sm:w-auto"
           >
             <option value="default">Urutan standar</option>
             <option value="termurah">Harga terendah</option>
@@ -123,10 +123,10 @@ export default function ProductBrowser({ products }: Props) {
               aria-pressed={active}
               onClick={() => setCategory(c)}
               className={cn(
-                "rounded-full border px-4 py-1.5 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest",
+                "rounded-full border px-4 py-1.5 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
                 active
-                  ? "border-forest bg-forest font-semibold text-white"
-                  : "border-ink/10 bg-white text-ink/80 hover:border-forest hover:text-forest",
+                  ? "border-brand bg-brand font-semibold text-white"
+                  : "border-ink/10 bg-white text-ink/80 hover:border-brand hover:text-brand",
               )}
             >
               {c}
@@ -162,7 +162,7 @@ export default function ProductBrowser({ products }: Props) {
           <button
             type="button"
             onClick={resetFilters}
-            className="mt-5 rounded-full border border-forest px-5 py-2 text-sm font-semibold text-forest transition-colors hover:bg-forest hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
+            className="mt-5 rounded-full border border-brand px-5 py-2 text-sm font-semibold text-brand transition-colors hover:bg-brand hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
           >
             Atur ulang filter
           </button>

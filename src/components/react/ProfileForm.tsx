@@ -56,17 +56,17 @@ export default function ProfileForm({ user }: Props) {
           value={bio}
           onChange={(e) => setBio(e.target.value)}
           rows={3}
-          className="w-full rounded-md border border-ink/15 px-3 py-2 text-sm outline-none focus:border-forest focus:ring-2 focus:ring-forest/20"
+          className="w-full rounded-md border border-ink/15 px-3 py-2 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20"
         />
       </div>
       <button
         type="submit"
-        className="rounded-md bg-forest px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-forest-dark"
+        className="rounded-md bg-brand px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
       >
         Simpan Profil
       </button>
       {success && (
-        <p className="text-sm text-forest">Profil disimpan (demo, belum terhubung ke backend).</p>
+        <p className="text-sm text-brand">Profil disimpan (demo, belum terhubung ke backend).</p>
       )}
     </form>
   );

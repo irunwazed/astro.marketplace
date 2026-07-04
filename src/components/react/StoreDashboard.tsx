@@ -171,7 +171,7 @@ export default function StoreDashboard({
       <Icon>{item.icon}</Icon>
       {item.label}
       {!!badges[item.id] && (
-        <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-terracotta px-1.5 text-[10px] font-bold text-white">
+        <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-rose px-1.5 text-[10px] font-bold text-white">
           {badges[item.id]}
         </span>
       )}
@@ -181,10 +181,10 @@ export default function StoreDashboard({
   return (
     <div className="flex min-h-screen flex-col bg-cream lg:flex-row">
       {/* Sidebar (desktop) */}
-      <aside className="hidden w-64 shrink-0 flex-col bg-forest-deep px-4 py-6 text-white lg:flex">
+      <aside className="hidden w-64 shrink-0 flex-col bg-brand-deep px-4 py-6 text-white lg:flex">
         <a href="/" className="flex items-center gap-2.5 px-2">
           <span
-            className="flex h-10 w-10 items-center justify-center rounded-lg bg-white font-display text-xl font-bold text-forest"
+            className="flex h-10 w-10 items-center justify-center rounded-lg bg-white font-display text-xl font-bold text-brand"
             aria-hidden="true"
           >
             K
@@ -226,10 +226,10 @@ export default function StoreDashboard({
       </aside>
 
       {/* Bar atas (mobile) */}
-      <div className="bg-forest-deep px-4 py-3 text-white lg:hidden">
+      <div className="bg-brand-deep px-4 py-3 text-white lg:hidden">
         <div className="flex items-center gap-2.5">
           <span
-            className="flex h-9 w-9 items-center justify-center rounded-lg bg-white font-display text-lg font-bold text-forest"
+            className="flex h-9 w-9 items-center justify-center rounded-lg bg-white font-display text-lg font-bold text-brand"
             aria-hidden="true"
           >
             K
@@ -275,17 +275,17 @@ export default function StoreDashboard({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Cari produk toko..."
-              className="w-48 rounded-full border border-ink/10 bg-white py-2.5 pl-10 pr-4 text-sm outline-none transition-colors placeholder:text-moss focus:border-forest focus:ring-2 focus:ring-forest/20 sm:w-64"
+              className="w-48 rounded-full border border-ink/10 bg-white py-2.5 pl-10 pr-4 text-sm outline-none transition-colors placeholder:text-moss focus:border-brand focus:ring-2 focus:ring-brand/20 sm:w-64"
             />
           </form>
           <button
             type="button"
             aria-label="Notifikasi"
-            className="relative flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 bg-white text-ink transition-colors hover:border-forest hover:text-forest"
+            className="relative flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 bg-white text-ink transition-colors hover:border-brand hover:text-brand"
           >
             <Icon>{icons.bell}</Icon>
             <span
-              className="absolute right-2 top-2 h-2 w-2 rounded-full bg-terracotta"
+              className="absolute right-2 top-2 h-2 w-2 rounded-full bg-rose"
               aria-hidden="true"
             />
           </button>
@@ -367,10 +367,10 @@ function Panel({ children }: { children: ReactNode }) {
 /* ---------- Seksi Dashboard (ringkasan) ---------- */
 
 const TONE = {
-  forest: "bg-forest/10 text-forest",
+  brand: "bg-brand/10 text-brand",
   amber: "bg-amber/15 text-amber-deep",
-  terracotta: "bg-terracotta/15 text-terracotta",
-  deep: "bg-forest-deep text-white",
+  rose: "bg-rose/15 text-rose",
+  deep: "bg-brand-deep text-white",
 };
 
 function DashboardSection({
@@ -415,7 +415,7 @@ function DashboardSection({
       value: formatIDR(omzet),
       chip: "12,4% dari kemarin",
       up: true,
-      tone: "forest",
+      tone: "brand",
       icon: icons.money,
     },
     {
@@ -431,7 +431,7 @@ function DashboardSection({
       value: String(needAction),
       chip: "perlu disiapkan",
       up: false,
-      tone: "terracotta",
+      tone: "rose",
       icon: icons.cart,
     },
     {
@@ -452,7 +452,7 @@ function DashboardSection({
   ];
 
   const stockBars = [...products].sort((a, b) => a.stock - b.stock).slice(0, 3);
-  const barTone = ["bg-terracotta", "bg-amber", "bg-forest"];
+  const barTone = ["bg-rose", "bg-amber", "bg-brand"];
 
   const activities = [
     {
@@ -503,7 +503,7 @@ function DashboardSection({
             <span
               className={cn(
                 "mt-2 inline-block rounded-full px-2 py-0.5 text-[11px] font-semibold",
-                s.up ? "bg-forest/10 text-forest" : "bg-terracotta/15 text-terracotta",
+                s.up ? "bg-brand/10 text-brand" : "bg-rose/15 text-rose",
               )}
             >
               {s.up ? "↑" : "↓"} {s.chip}
@@ -513,7 +513,7 @@ function DashboardSection({
       </div>
 
       {/* Panel gelap: navigasi modul toko */}
-      <div className="rounded-3xl bg-gradient-to-br from-forest to-forest-deep p-6 text-white sm:p-8">
+      <div className="rounded-3xl bg-gradient-to-br from-brand to-brand-deep p-6 text-white sm:p-8">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center">
           <div className="lg:max-w-xs">
             <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-amber">
@@ -561,7 +561,7 @@ function DashboardSection({
         <Panel>
           <div className="flex items-center justify-between gap-3">
             <h2 className="font-display text-lg font-bold">Pesanan Terbaru</h2>
-            <a href="/orders" className="text-sm font-semibold text-forest hover:underline">
+            <a href="/orders" className="text-sm font-semibold text-brand hover:underline">
               Lihat semua →
             </a>
           </div>
@@ -587,9 +587,9 @@ function DashboardSection({
                             className={cn(
                               "h-1.5 w-1.5 rounded-full",
                               o.status === "SELESAI"
-                                ? "bg-forest"
+                                ? "bg-brand"
                                 : o.status === "MENUNGGU_PEMBAYARAN"
-                                  ? "bg-terracotta"
+                                  ? "bg-rose"
                                   : "bg-amber",
                             )}
                             aria-hidden="true"
@@ -636,7 +636,7 @@ function DashboardSection({
               ))}
             </ul>
             {lowStock.length > 0 && (
-              <p className="mt-3 flex items-center gap-1.5 text-xs font-medium text-terracotta">
+              <p className="mt-3 flex items-center gap-1.5 text-xs font-medium text-rose">
                 <Icon className="h-3.5 w-3.5">{icons.alert}</Icon>
                 {lowStock.length} produk perlu segera di-restock
               </p>
@@ -648,7 +648,7 @@ function DashboardSection({
             <ul className="mt-2 divide-y divide-ink/5">
               {activities.map((a, i) => (
                 <li key={i} className="flex items-start gap-3 py-3">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-forest/10 text-forest">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-brand">
                     <Icon className="h-4 w-4">{a.icon}</Icon>
                   </span>
                   <div className="text-sm">
@@ -690,7 +690,7 @@ function DetailPanel({ store, offices }: { store: Store; offices: Office[] }) {
             <input
               type="file"
               accept="image/*"
-              className="text-sm text-moss file:mr-3 file:rounded-full file:border-0 file:bg-forest/10 file:px-3 file:py-1 file:text-xs file:font-semibold file:text-forest"
+              className="text-sm text-moss file:mr-3 file:rounded-full file:border-0 file:bg-brand/10 file:px-3 file:py-1 file:text-xs file:font-semibold file:text-brand"
             />
           </label>
         </div>
@@ -704,7 +704,7 @@ function DetailPanel({ store, offices }: { store: Store; offices: Office[] }) {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={3}
-            className="w-full rounded-md border border-ink/15 px-3 py-2 text-sm outline-none focus:border-forest focus:ring-2 focus:ring-forest/20"
+            className="w-full rounded-md border border-ink/15 px-3 py-2 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20"
           />
         </div>
         <FormField label="Alamat" name="address" value={address} onChange={setAddress} />
@@ -712,7 +712,7 @@ function DetailPanel({ store, offices }: { store: Store; offices: Office[] }) {
         <div>
           <span className="mb-1 block text-sm font-medium text-ink/80">Lokasi map toko</span>
           <div className="flex aspect-[3/1] w-full flex-col items-center justify-center gap-1 rounded-lg border border-dashed border-ink/20 bg-cream">
-            <Icon className="h-6 w-6 text-terracotta">{icons.pin}</Icon>
+            <Icon className="h-6 w-6 text-rose">{icons.pin}</Icon>
             <p className="text-xs font-semibold">
               {store.location.lat}, {store.location.lng}
             </p>
@@ -731,7 +731,7 @@ function DetailPanel({ store, offices }: { store: Store; offices: Office[] }) {
               setOfficeId(e.target.value);
               setSaved(false);
             }}
-            className="w-full cursor-pointer rounded-md border border-ink/15 bg-white px-3 py-2 text-sm outline-none focus:border-forest focus:ring-2 focus:ring-forest/20"
+            className="w-full cursor-pointer rounded-md border border-ink/15 bg-white px-3 py-2 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20"
           >
             <option value="">Tidak memakai office</option>
             {offices.map((o) => (
@@ -745,11 +745,11 @@ function DetailPanel({ store, offices }: { store: Store; offices: Office[] }) {
 
         <button
           type="submit"
-          className="rounded-md bg-forest px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-forest-dark"
+          className="rounded-md bg-brand px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
         >
           Simpan Detail
         </button>
-        {saved && <p className="text-sm text-forest">Detail toko disimpan (demo).</p>}
+        {saved && <p className="text-sm text-brand">Detail toko disimpan (demo).</p>}
       </form>
     </Panel>
   );
@@ -787,7 +787,7 @@ function MembersPanel({ initialMembers }: { initialMembers: StoreMember[] }) {
         {members.map((m) => (
           <li key={m.id} className="flex items-center gap-3 py-3">
             <span
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-forest/10 text-xs font-bold text-forest"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand/10 text-xs font-bold text-brand"
               aria-hidden="true"
             >
               {initialsOf(m.name)}
@@ -799,7 +799,7 @@ function MembersPanel({ initialMembers }: { initialMembers: StoreMember[] }) {
             <span
               className={cn(
                 "rounded-full px-2.5 py-0.5 text-[11px] font-bold uppercase",
-                m.role === "owner" ? "bg-forest text-white" : "bg-forest/10 text-forest",
+                m.role === "owner" ? "bg-brand text-white" : "bg-brand/10 text-brand",
               )}
             >
               {m.role}
@@ -822,20 +822,20 @@ function MembersPanel({ initialMembers }: { initialMembers: StoreMember[] }) {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="email@contoh.com"
             aria-label="Email anggota baru"
-            className="flex-1 rounded-md border border-ink/15 px-3 py-2 text-sm outline-none focus:border-forest focus:ring-2 focus:ring-forest/20"
+            className="flex-1 rounded-md border border-ink/15 px-3 py-2 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20"
           />
           <select
             value={role}
             onChange={(e) => setRole(e.target.value as "staff" | "owner")}
             aria-label="Peran anggota baru"
-            className="cursor-pointer rounded-md border border-ink/15 bg-white px-3 py-2 text-sm outline-none focus:border-forest focus:ring-2 focus:ring-forest/20"
+            className="cursor-pointer rounded-md border border-ink/15 bg-white px-3 py-2 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20"
           >
             <option value="staff">Staff</option>
             <option value="owner">Owner</option>
           </select>
           <button
             type="submit"
-            className="rounded-md bg-forest px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-forest-dark"
+            className="rounded-md bg-brand px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
           >
             Kirim Undangan
           </button>
@@ -868,7 +868,7 @@ function ProductsPanel({ initialProducts, filter }: { initialProducts: Product[]
         </p>
         <a
           href="/toko/kelola/produk-baru"
-          className="rounded-full bg-forest px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-forest-dark"
+          className="rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
         >
           + Tambah Produk
         </a>
@@ -890,8 +890,8 @@ function ProductsPanel({ initialProducts, filter }: { initialProducts: Product[]
               aria-label={`${p.published ? "Unpublish" : "Publish"} ${p.name}`}
               onClick={() => togglePublish(p.id)}
               className={cn(
-                "relative h-6 w-11 shrink-0 rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest",
-                p.published ? "bg-forest" : "bg-ink/20",
+                "relative h-6 w-11 shrink-0 rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
+                p.published ? "bg-brand" : "bg-ink/20",
               )}
             >
               <span
@@ -904,7 +904,7 @@ function ProductsPanel({ initialProducts, filter }: { initialProducts: Product[]
             <span
               className={cn(
                 "w-14 text-right text-[11px] font-bold uppercase",
-                p.published ? "text-forest" : "text-moss",
+                p.published ? "text-brand" : "text-moss",
               )}
             >
               {p.published ? "Tayang" : "Draft"}
@@ -945,15 +945,15 @@ function DropPointPanel({ store, dropPoints }: { store: Store; dropPoints: DropP
               className={cn(
                 "flex cursor-pointer items-start gap-3 rounded-lg border p-3 transition-colors",
                 selected.includes(dp.id)
-                  ? "border-forest bg-forest/5"
-                  : "border-ink/10 hover:border-forest/50",
+                  ? "border-brand bg-brand/5"
+                  : "border-ink/10 hover:border-brand/50",
               )}
             >
               <input
                 type="checkbox"
                 checked={selected.includes(dp.id)}
                 onChange={() => toggle(dp.id)}
-                className="mt-0.5 h-4 w-4 accent-forest"
+                className="mt-0.5 h-4 w-4 accent-brand"
               />
               <span>
                 <span className="block text-sm font-semibold">{dp.name}</span>
@@ -966,12 +966,12 @@ function DropPointPanel({ store, dropPoints }: { store: Store; dropPoints: DropP
       <button
         type="button"
         onClick={() => setSaved(true)}
-        className="mt-4 rounded-md bg-forest px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-forest-dark"
+        className="mt-4 rounded-md bg-brand px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
       >
         Simpan Drop Point
       </button>
       {saved && (
-        <p className="mt-2 text-sm text-forest">{selected.length} drop point disimpan (demo).</p>
+        <p className="mt-2 text-sm text-brand">{selected.length} drop point disimpan (demo).</p>
       )}
     </Panel>
   );

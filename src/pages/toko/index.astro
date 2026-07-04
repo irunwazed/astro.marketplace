@@ -18,7 +18,7 @@ import { myMemberships } from "../../data/my-store";
       </div>
       <a
         href="/toko/buat"
-        class="rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-forest-dark"
+        class="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
       >
         + Buat Toko
       </a>
@@ -30,7 +30,7 @@ import { myMemberships } from "../../data/my-store";
           <li>
             <a
               href="/toko/kelola"
-              class="flex items-center gap-4 rounded-xl border border-ink/10 bg-white p-4 transition-colors hover:border-forest"
+              class="flex items-center gap-4 rounded-xl border border-ink/10 bg-white p-4 transition-colors hover:border-brand"
             >
               <img src={m.logo} alt={`Logo ${m.storeName}`} class="h-12 w-12 rounded-xl" />
               <span class="min-w-0 flex-1">
@@ -40,7 +40,7 @@ import { myMemberships } from "../../data/my-store";
               <span
                 class:list={[
                   "rounded-full px-3 py-1 text-[11px] font-bold uppercase",
-                  m.role === "owner" ? "bg-forest text-white" : "bg-forest/10 text-forest",
+                  m.role === "owner" ? "bg-brand text-white" : "bg-brand/10 text-brand",
                 ]}
               >
                 {m.role}

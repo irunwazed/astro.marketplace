@@ -48,7 +48,7 @@ export default function OrderTracking({ dropPoints }: Props) {
         </p>
         <a
           href="/orders"
-          className="mt-5 inline-block rounded-full bg-forest px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-forest-dark"
+          className="mt-5 inline-block rounded-full bg-brand px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
         >
           Semua Pesanan
         </a>
@@ -91,7 +91,7 @@ export default function OrderTracking({ dropPoints }: Props) {
                   <span
                     className={cn(
                       "absolute left-3.75 top-8 h-[calc(100%-2rem)] w-0.5",
-                      i < reached ? "bg-forest" : "bg-ink/10",
+                      i < reached ? "bg-brand" : "bg-ink/10",
                     )}
                     aria-hidden="true"
                   />
@@ -99,7 +99,7 @@ export default function OrderTracking({ dropPoints }: Props) {
                 <span
                   className={cn(
                     "flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold",
-                    done ? "bg-forest text-white" : "border-2 border-ink/15 bg-white text-moss",
+                    done ? "bg-brand text-white" : "border-2 border-ink/15 bg-white text-moss",
                   )}
                   aria-hidden="true"
                 >
@@ -124,12 +124,12 @@ export default function OrderTracking({ dropPoints }: Props) {
                     className={cn(
                       "text-sm font-semibold",
                       done ? "text-ink" : "text-moss",
-                      current && "text-forest",
+                      current && "text-brand",
                     )}
                   >
                     {step.label}
                     {current && (
-                      <span className="ml-2 rounded-full bg-forest/10 px-2 py-0.5 text-[10px] font-bold uppercase text-forest">
+                      <span className="ml-2 rounded-full bg-brand/10 px-2 py-0.5 text-[10px] font-bold uppercase text-brand">
                         Saat ini
                       </span>
                     )}

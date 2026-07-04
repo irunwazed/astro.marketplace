@@ -14,13 +14,13 @@ export const ORDER_STATUS_LABEL: Record<OrderStatus, string> = {
 /** Kelas warna badge status (token tema di global.css). */
 export const ORDER_STATUS_BADGE: Record<OrderStatus, string> = {
   MENUNGGU_PEMBAYARAN: "bg-amber/15 text-amber-deep",
-  DIBAYAR: "bg-forest/10 text-forest",
-  DISIAPKAN: "bg-forest/10 text-forest",
-  DISERAHKAN_KE_KURIR: "bg-forest/10 text-forest",
-  DIANTAR: "bg-forest/10 text-forest",
+  DIBAYAR: "bg-brand/10 text-brand",
+  DISIAPKAN: "bg-brand/10 text-brand",
+  DISERAHKAN_KE_KURIR: "bg-brand/10 text-brand",
+  DIANTAR: "bg-brand/10 text-brand",
   TIBA_DI_DROP_POINT: "bg-amber/15 text-amber-deep",
-  SELESAI: "bg-forest text-white",
-  DIBATALKAN: "bg-terracotta/15 text-terracotta",
+  SELESAI: "bg-brand text-white",
+  DIBATALKAN: "bg-rose/15 text-rose",
 };
 
 /** Lima tahap tracking yang dipantau pembeli (poin 13 requirement). */

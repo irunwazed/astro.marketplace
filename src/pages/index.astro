@@ -19,7 +19,7 @@ const banners = [
   {
     title: "Poin Simpanan Otomatis",
     body: "Setiap belanja menambah saldo simpanan sukarela Anda.",
-    class: "bg-forest",
+    class: "bg-brand",
   },
   {
     title: "Isi Pulsa & Bayar Tagihan",
@@ -29,7 +29,7 @@ const banners = [
   {
     title: "Jadi Mitra UMKM",
     body: "Titip produk Anda dan jangkau seluruh anggota koperasi.",
-    class: "bg-terracotta",
+    class: "bg-rose",
   },
 ];
 ---
@@ -38,7 +38,7 @@ const banners = [
   <SiteHeader />
   <main class="mx-auto max-w-6xl px-4">
     <section
-      class="mt-6 rounded-3xl bg-gradient-to-br from-forest to-forest-deep px-6 py-10 text-white sm:px-10 sm:py-12"
+      class="mt-6 rounded-3xl bg-gradient-to-br from-brand to-brand-deep px-6 py-10 text-white sm:px-10 sm:py-12"
     >
       <div class="flex flex-col items-start gap-10 lg:flex-row lg:items-center">
         <div class="flex-1">
@@ -57,7 +57,7 @@ const banners = [
           </p>
           <a
             href="/products"
-            class="mt-7 inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-bold text-forest transition-colors hover:bg-cream"
+            class="mt-7 inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-bold text-brand transition-colors hover:bg-cream"
           >
             Mulai Belanja
             <span aria-hidden="true">→</span>
@@ -105,7 +105,7 @@ const banners = [
           </p>
           <h2 class="mt-1 font-display text-2xl font-bold">Belanja dari Toko Anggota</h2>
         </div>
-        <a href="/products" class="text-sm font-semibold text-forest hover:underline">
+        <a href="/products" class="text-sm font-semibold text-brand hover:underline">
           Lihat semua mitra →
         </a>
       </div>
@@ -115,10 +115,10 @@ const banners = [
             <li>
               <a
                 href="/products"
-                class="flex items-center gap-3 rounded-xl border border-ink/10 bg-white py-2.5 pl-2.5 pr-5 transition-colors hover:border-forest"
+                class="flex items-center gap-3 rounded-xl border border-ink/10 bg-white py-2.5 pl-2.5 pr-5 transition-colors hover:border-brand"
               >
                 <span
-                  class="flex h-9 w-9 items-center justify-center rounded-full bg-forest/10 text-sm font-bold text-forest"
+                  class="flex h-9 w-9 items-center justify-center rounded-full bg-brand/10 text-sm font-bold text-brand"
                   aria-hidden="true"
                 >
                   {store.name[0]}
@@ -142,7 +142,7 @@ const banners = [
           </p>
           <h2 class="mt-1 font-display text-2xl font-bold">Produk Pilihan Anggota</h2>
         </div>
-        <a href="/products" class="text-sm font-semibold text-forest hover:underline">
+        <a href="/products" class="text-sm font-semibold text-brand hover:underline">
           Lihat semua produk →
         </a>
       </div>

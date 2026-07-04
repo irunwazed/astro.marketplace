@@ -13,7 +13,7 @@ interface Props {
 const { showSearch = true, showCategories = true } = Astro.props;
 ---
 
-<div class="bg-forest-deep text-xs text-white/85">
+<div class="bg-brand-deep text-xs text-white/85">
   <div class="mx-auto flex max-w-6xl items-center justify-center gap-4 px-4 py-2 sm:justify-between">
     <span class="hidden w-40 sm:block"></span>
     <p class="text-center">
@@ -32,13 +32,13 @@ const { showSearch = true, showCategories = true } = Astro.props;
   <div class="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3.5">
     <a href="/" class="flex shrink-0 items-center gap-2.5">
       <span
-        class="flex h-10 w-10 items-center justify-center rounded-lg bg-forest font-display text-xl font-bold text-white"
+        class="flex h-10 w-10 items-center justify-center rounded-lg bg-brand font-display text-xl font-bold text-white"
         aria-hidden="true"
       >
         K
       </span>
       <span>
-        <span class="block font-display text-lg font-bold leading-tight text-forest">
+        <span class="block font-display text-lg font-bold leading-tight text-brand">
           Pasar Koperasi
         </span>
         <span class="block text-[10px] font-semibold uppercase tracking-[0.18em] text-moss">
@@ -70,7 +70,7 @@ const { showSearch = true, showCategories = true } = Astro.props;
             type="search"
             name="q"
             placeholder="Cari beras, kopi, kerajinan, sembako..."
-            class="w-full rounded-full border border-transparent bg-cream py-2.5 pl-11 pr-4 text-sm outline-none transition-colors placeholder:text-moss focus:border-forest focus:bg-white focus:ring-2 focus:ring-forest/20"
+            class="w-full rounded-full border border-transparent bg-cream py-2.5 pl-11 pr-4 text-sm outline-none transition-colors placeholder:text-moss focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand/20"
           />
         </form>
       )
@@ -86,7 +86,7 @@ const { showSearch = true, showCategories = true } = Astro.props;
           <li class="shrink-0">
             <a
               href="/products"
-              class="block rounded-full bg-forest px-4 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-forest-dark"
+              class="block rounded-full bg-brand px-4 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
             >
               Semua Produk
             </a>
@@ -97,7 +97,7 @@ const { showSearch = true, showCategories = true } = Astro.props;
                 href={`/products?kategori=${encodeURIComponent(category)}`}
                 class={cn(
                   "block rounded-full border border-ink/10 bg-white px-4 py-1.5 text-sm font-medium",
-                  "text-ink/80 transition-colors hover:border-forest hover:text-forest",
+                  "text-ink/80 transition-colors hover:border-brand hover:text-brand",
                 )}
               >
                 {category}

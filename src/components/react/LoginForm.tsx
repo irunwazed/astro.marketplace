@@ -61,16 +61,16 @@ export default function LoginForm() {
       />
       <button
         type="submit"
-        className="w-full rounded-md bg-forest px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-forest-dark"
+        className="w-full rounded-md bg-brand px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
       >
         Masuk
       </button>
       {success && (
-        <p className="text-sm text-forest">Berhasil masuk — mengalihkan ke profil…</p>
+        <p className="text-sm text-brand">Berhasil masuk — mengalihkan ke profil…</p>
       )}
       <p className="text-center text-sm text-moss">
         Belum punya akun?{" "}
-        <a href="/register" className="font-semibold text-forest hover:underline">
+        <a href="/register" className="font-semibold text-brand hover:underline">
           Daftar
         </a>
       </p>

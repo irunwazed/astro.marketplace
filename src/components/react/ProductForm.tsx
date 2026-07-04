@@ -64,7 +64,7 @@ export default function ProductForm({ categoryOptions }: Props) {
           type="file"
           accept="image/*"
           onChange={(e) => setPhotoName(e.target.files?.[0]?.name ?? "")}
-          className="w-full rounded-md border border-ink/15 px-3 py-2 text-sm text-moss outline-none file:mr-3 file:rounded-full file:border-0 file:bg-forest/10 file:px-3 file:py-1 file:text-xs file:font-semibold file:text-forest focus:border-forest focus:ring-2 focus:ring-forest/20"
+          className="w-full rounded-md border border-ink/15 px-3 py-2 text-sm text-moss outline-none file:mr-3 file:rounded-full file:border-0 file:bg-brand/10 file:px-3 file:py-1 file:text-xs file:font-semibold file:text-brand focus:border-brand focus:ring-2 focus:ring-brand/20"
         />
         {photoName && <p className="mt-1 text-xs text-moss">Terpilih: {photoName}</p>}
       </div>
@@ -120,8 +120,8 @@ export default function ProductForm({ categoryOptions }: Props) {
                 className={cn(
                   "cursor-pointer rounded-full border px-3 py-1.5 text-sm font-medium transition-colors",
                   active
-                    ? "border-forest bg-forest text-white"
-                    : "border-ink/10 bg-white text-ink/80 hover:border-forest hover:text-forest",
+                    ? "border-brand bg-brand text-white"
+                    : "border-ink/10 bg-white text-ink/80 hover:border-brand hover:text-brand",
                 )}
               >
                 <input
@@ -148,7 +148,7 @@ export default function ProductForm({ categoryOptions }: Props) {
           onChange={(e) => setDescription(e.target.value)}
           rows={4}
           placeholder="Bahan, keunggulan, cara penyimpanan, dan info lainnya"
-          className="w-full rounded-md border border-ink/15 px-3 py-2 text-sm outline-none focus:border-forest focus:ring-2 focus:ring-forest/20"
+          className="w-full rounded-md border border-ink/15 px-3 py-2 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20"
         />
         {errors.description && <p className="mt-1 text-xs text-red-600">{errors.description}</p>}
       </div>
@@ -162,7 +162,7 @@ export default function ProductForm({ categoryOptions }: Props) {
               name="publish"
               checked={publishNow}
               onChange={() => setPublishNow(true)}
-              className="h-4 w-4 accent-forest"
+              className="h-4 w-4 accent-brand"
             />
             Publish langsung
           </label>
@@ -172,7 +172,7 @@ export default function ProductForm({ categoryOptions }: Props) {
               name="publish"
               checked={!publishNow}
               onChange={() => setPublishNow(false)}
-              className="h-4 w-4 accent-forest"
+              className="h-4 w-4 accent-brand"
             />
             Simpan sebagai draft
           </label>
@@ -181,12 +181,12 @@ export default function ProductForm({ categoryOptions }: Props) {
 
       <button
         type="submit"
-        className="w-full rounded-md bg-forest px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-forest-dark"
+        className="w-full rounded-md bg-brand px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
       >
         Simpan Produk
       </button>
       {success && (
-        <p className="text-sm text-forest">
+        <p className="text-sm text-brand">
           Produk tersimpan sebagai {publishNow ? "PUBLISHED — tayang di katalog" : "DRAFT"} (demo).{" "}
           <a href="/toko/kelola" className="font-semibold underline">
             Kembali ke kelola toko

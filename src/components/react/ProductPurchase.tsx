@@ -46,7 +46,7 @@ export default function ProductPurchase({ product }: { product: Product }) {
             aria-label="Kurangi jumlah"
             onClick={() => changeQty(-1)}
             disabled={qty <= 1}
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-ink/15 text-sm font-bold transition-colors hover:border-forest hover:text-forest disabled:cursor-not-allowed disabled:opacity-40"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-ink/15 text-sm font-bold transition-colors hover:border-brand hover:text-brand disabled:cursor-not-allowed disabled:opacity-40"
           >
             −
           </button>
@@ -58,7 +58,7 @@ export default function ProductPurchase({ product }: { product: Product }) {
             aria-label="Tambah jumlah"
             onClick={() => changeQty(1)}
             disabled={qty >= product.stock}
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-ink/15 text-sm font-bold transition-colors hover:border-forest hover:text-forest disabled:cursor-not-allowed disabled:opacity-40"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-ink/15 text-sm font-bold transition-colors hover:border-brand hover:text-brand disabled:cursor-not-allowed disabled:opacity-40"
           >
             +
           </button>
@@ -73,7 +73,7 @@ export default function ProductPurchase({ product }: { product: Product }) {
           type="button"
           onClick={handleAdd}
           disabled={busy}
-          className="w-full rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-forest-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest disabled:cursor-wait disabled:opacity-60"
+          className="w-full rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-wait disabled:opacity-60"
         >
           {added ? "✓ Masuk keranjang" : "+ Tambah ke Keranjang"}
         </button>
@@ -81,7 +81,7 @@ export default function ProductPurchase({ product }: { product: Product }) {
           type="button"
           onClick={handleBuyNow}
           disabled={busy}
-          className="w-full rounded-full border border-forest px-5 py-2.5 text-sm font-semibold text-forest transition-colors hover:bg-forest hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest disabled:cursor-wait disabled:opacity-60"
+          className="w-full rounded-full border border-brand px-5 py-2.5 text-sm font-semibold text-brand transition-colors hover:bg-brand hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-wait disabled:opacity-60"
         >
           Beli Sekarang
         </button>

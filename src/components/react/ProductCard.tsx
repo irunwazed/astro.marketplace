@@ -38,7 +38,7 @@ export default function ProductCard({ product }: { product: Product }) {
           <span
             className={cn(
               "absolute left-3 top-3 rounded-full px-2.5 py-1 text-[11px] font-bold text-white",
-              product.badge === "Terlaris" ? "bg-terracotta" : "bg-forest",
+              product.badge === "Terlaris" ? "bg-rose" : "bg-brand",
             )}
           >
             {product.badge}
@@ -47,7 +47,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <button
           type="button"
           aria-label={`Simpan ${product.name} ke wishlist`}
-          className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-ink/70 shadow-sm transition-colors hover:text-terracotta focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
+          className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-ink/70 shadow-sm transition-colors hover:text-rose focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
         >
           <svg
             className="h-4 w-4"
@@ -64,7 +64,7 @@ export default function ProductCard({ product }: { product: Product }) {
         </button>
       </div>
       <div className="flex flex-1 flex-col p-4">
-        <p className="flex items-center gap-1.5 text-xs font-medium text-forest">
+        <p className="flex items-center gap-1.5 text-xs font-medium text-brand">
           <svg className="h-2 w-2" viewBox="0 0 8 8" fill="none" aria-hidden="true">
             <circle cx="4" cy="4" r="3" stroke="currentColor" strokeWidth="1.5" />
           </svg>
@@ -73,7 +73,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <h3 className="mt-1.5 text-sm font-semibold leading-snug">
           <a
             href={`/products/${product.id}`}
-            className="transition-colors hover:text-forest focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
+            className="transition-colors hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
           >
             {product.name}
           </a>
@@ -100,8 +100,8 @@ export default function ProductCard({ product }: { product: Product }) {
             onClick={handleAdd}
             aria-label={`Tambah ${product.name} ke keranjang`}
             className={cn(
-              "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-white transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest",
-              added ? "bg-amber" : "bg-forest hover:bg-forest-dark",
+              "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-white transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
+              added ? "bg-amber" : "bg-brand hover:bg-brand-dark",
             )}
           >
             <svg

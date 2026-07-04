@@ -58,7 +58,7 @@ export default function OrdersList({ demoOrders }: Props) {
         <li key={order.id}>
           <a
             href={href}
-            className="block rounded-xl border border-ink/10 bg-white p-4 transition-colors hover:border-forest"
+            className="block rounded-xl border border-ink/10 bg-white p-4 transition-colors hover:border-brand"
           >
             <div className="flex flex-wrap items-center justify-between gap-2">
               <p className="flex items-center gap-2 text-sm font-bold">

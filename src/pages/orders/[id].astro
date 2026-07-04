@@ -34,7 +34,7 @@ const formatDate = (iso: string) =>
 <Layout title={`${order.id} — Pasar Koperasi`}>
   <SiteHeader showSearch={false} showCategories={false} />
   <main class="mx-auto max-w-3xl px-4 py-12">
-    <a href="/orders" class="text-sm font-semibold text-forest hover:underline">
+    <a href="/orders" class="text-sm font-semibold text-brand hover:underline">
       ← Semua pesanan
     </a>
 
@@ -67,14 +67,14 @@ const formatDate = (iso: string) =>
       }
       {
         order.status === "DIBAYAR" && (
-          <p class="mt-3 rounded-lg bg-forest/10 px-4 py-3 text-sm font-medium text-forest">
+          <p class="mt-3 rounded-lg bg-brand/10 px-4 py-3 text-sm font-medium text-brand">
             Pembayaran diterima — toko akan segera menyiapkan pesanan.
           </p>
         )
       }
       {
         order.status === "DIBATALKAN" && (
-          <p class="mt-3 rounded-lg bg-terracotta/15 px-4 py-3 text-sm font-medium text-terracotta">
+          <p class="mt-3 rounded-lg bg-rose/15 px-4 py-3 text-sm font-medium text-rose">
             Pesanan dibatalkan.
           </p>
         )
@@ -92,7 +92,7 @@ const formatDate = (iso: string) =>
                   <span
                     class:list={[
                       "absolute left-3.75 top-8 h-[calc(100%-2rem)] w-0.5",
-                      i < reached ? "bg-forest" : "bg-ink/10",
+                      i < reached ? "bg-brand" : "bg-ink/10",
                     ]}
                     aria-hidden="true"
                   />
@@ -100,7 +100,7 @@ const formatDate = (iso: string) =>
                 <span
                   class:list={[
                     "flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold",
-                    done ? "bg-forest text-white" : "border-2 border-ink/15 bg-white text-moss",
+                    done ? "bg-brand text-white" : "border-2 border-ink/15 bg-white text-moss",
                   ]}
                   aria-hidden="true"
                 >
@@ -125,12 +125,12 @@ const formatDate = (iso: string) =>
                     class:list={[
                       "text-sm font-semibold",
                       done ? "text-ink" : "text-moss",
-                      current && "text-forest",
+                      current && "text-brand",
                     ]}
                   >
                     {step.label}
                     {current && (
-                      <span class="ml-2 rounded-full bg-forest/10 px-2 py-0.5 text-[10px] font-bold uppercase text-forest">
+                      <span class="ml-2 rounded-full bg-brand/10 px-2 py-0.5 text-[10px] font-bold uppercase text-brand">
                         Saat ini
                       </span>
                     )}

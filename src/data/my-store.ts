@@ -5,7 +5,7 @@ import { products } from "./products";
 export const myStore: Store = {
   id: "ST-1",
   name: "Warung Ibu Ani",
-  logo: "https://placehold.co/128x128/1e5443/ffffff?text=WA",
+  logo: "https://placehold.co/128x128/269dd8/ffffff?text=WA",
   description:
     "Warung kelontong anggota koperasi: sembako, camilan, dan produk olahan rumahan dari tetangga sekitar.",
   address: "Jl. Kenanga No. 17, Pasar Minggu, Jakarta Selatan",
@@ -86,14 +86,14 @@ export const myMemberships: StoreMembership[] = [
   {
     storeId: "ST-1",
     storeName: "Warung Ibu Ani",
-    logo: "https://placehold.co/96x96/1e5443/ffffff?text=WA",
+    logo: "https://placehold.co/96x96/269dd8/ffffff?text=WA",
     role: "owner",
     productCount: myStoreProducts.length,
   },
   {
     storeId: "ST-2",
     storeName: "Kopi Tani Makmur",
-    logo: "https://placehold.co/96x96/c96a55/ffffff?text=KT",
+    logo: "https://placehold.co/96x96/df2463/ffffff?text=KT",
     role: "staff",
     productCount: 42,
   },

@@ -27,7 +27,7 @@ const discount = product.originalPrice
 <Layout title={`${product.name} — Pasar Koperasi`}>
   <SiteHeader />
   <main class="mx-auto max-w-6xl px-4 py-10">
-    <a href="/products" class="text-sm font-semibold text-forest hover:underline">
+    <a href="/products" class="text-sm font-semibold text-brand hover:underline">
       ← Kembali ke katalog
     </a>
 
@@ -39,7 +39,7 @@ const discount = product.originalPrice
             <span
               class:list={[
                 "absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-bold text-white",
-                product.badge === "Terlaris" ? "bg-terracotta" : "bg-forest",
+                product.badge === "Terlaris" ? "bg-rose" : "bg-brand",
               ]}
             >
               {product.badge}
@@ -49,7 +49,7 @@ const discount = product.originalPrice
       </div>
 
       <div>
-        <p class="flex items-center gap-1.5 text-sm font-medium text-forest">
+        <p class="flex items-center gap-1.5 text-sm font-medium text-brand">
           <svg class="h-2.5 w-2.5" viewBox="0 0 8 8" fill="none" aria-hidden="true">
             <circle cx="4" cy="4" r="3" stroke="currentColor" stroke-width="1.5"></circle>
           </svg>
@@ -67,7 +67,7 @@ const discount = product.originalPrice
             product.originalPrice && (
               <p class="pb-1 text-sm text-moss">
                 <span class="line-through">{formatIDR(product.originalPrice)}</span>
-                <span class="ml-1.5 rounded-full bg-terracotta/15 px-2 py-0.5 text-xs font-bold text-terracotta">
+                <span class="ml-1.5 rounded-full bg-rose/15 px-2 py-0.5 text-xs font-bold text-rose">
                   -{discount}%
                 </span>
               </p>
@@ -94,7 +94,7 @@ const discount = product.originalPrice
                 <li>
                   <a
                     href={`/products?kategori=${encodeURIComponent(c)}`}
-                    class="block rounded-full border border-ink/10 bg-white px-3 py-1 text-xs font-medium text-ink/80 transition-colors hover:border-forest hover:text-forest"
+                    class="block rounded-full border border-ink/10 bg-white px-3 py-1 text-xs font-medium text-ink/80 transition-colors hover:border-brand hover:text-brand"
                   >
                     {c}
                   </a>

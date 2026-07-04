@@ -29,13 +29,13 @@ export default function ProfileView() {
         <div className="mt-6 flex justify-center gap-3">
           <a
             href="/login"
-            className="rounded-full bg-forest px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-forest-dark"
+            className="rounded-full bg-brand px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-dark"
           >
             Masuk
           </a>
           <a
             href="/register"
-            className="rounded-full border border-ink/10 bg-white px-5 py-2 text-sm font-semibold text-ink transition-colors hover:border-forest hover:text-forest"
+            className="rounded-full border border-ink/10 bg-white px-5 py-2 text-sm font-semibold text-ink transition-colors hover:border-brand hover:text-brand"
           >
             Daftar
           </a>
@@ -60,7 +60,7 @@ export default function ProfileView() {
     <div className="space-y-6">
       <div className="flex flex-col items-center gap-3">
         <span
-          className="flex h-20 w-20 items-center justify-center rounded-full bg-forest font-display text-2xl font-bold text-white"
+          className="flex h-20 w-20 items-center justify-center rounded-full bg-brand font-display text-2xl font-bold text-white"
           aria-hidden="true"
         >
           {initialsOf(session.name)}
@@ -76,7 +76,7 @@ export default function ProfileView() {
           <li key={link.href}>
             <a
               href={link.href}
-              className="block rounded-xl border border-ink/10 bg-white p-4 transition-colors hover:border-forest"
+              className="block rounded-xl border border-ink/10 bg-white p-4 transition-colors hover:border-brand"
             >
               <span className="block text-sm font-bold">{link.label}</span>
               <span className="mt-0.5 block text-xs text-moss">{link.hint}</span>
@@ -93,7 +93,7 @@ export default function ProfileView() {
       <button
         type="button"
         onClick={handleLogout}
-        className="w-full rounded-full border border-terracotta px-5 py-2 text-sm font-semibold text-terracotta transition-colors hover:bg-terracotta hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
+        className="w-full rounded-full border border-rose px-5 py-2 text-sm font-semibold text-rose transition-colors hover:bg-rose hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
       >
         Keluar
       </button>
