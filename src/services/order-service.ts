@@ -5,6 +5,7 @@ export interface CreateOrderPayload {
   items: { productId: string; qty: number }[];
   dropPointId: string;
   delivery: DeliveryLocation;
+  payment: string;
 }
 
 /** GET /api/orders — pesanan contoh + pesanan yang dibuat sesi ini. */

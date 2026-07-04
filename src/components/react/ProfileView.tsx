@@ -68,8 +68,28 @@ export default function ProfileView() {
         <div className="text-center">
           <p className="font-display text-xl font-bold">{session.name}</p>
           <p className="text-sm text-moss">{session.email}</p>
+          {session.memberNo && (
+            <p className="mt-1 inline-block rounded-full bg-brand/10 px-3 py-1 text-xs font-bold text-brand">
+              No. Anggota: {session.memberNo}
+            </p>
+          )}
         </div>
       </div>
+
+      <dl className="grid gap-3 rounded-xl border border-ink/10 bg-white p-5 text-sm sm:grid-cols-2">
+        <div>
+          <dt className="text-xs font-semibold uppercase tracking-wide text-moss">Username</dt>
+          <dd className="mt-0.5 font-semibold text-ink">
+            {session.username || "—"}
+          </dd>
+        </div>
+        <div>
+          <dt className="text-xs font-semibold uppercase tracking-wide text-moss">Nomor HP</dt>
+          <dd className="mt-0.5 font-semibold text-ink">
+            {session.phone || "—"}
+          </dd>
+        </div>
+      </dl>
 
       <ul className="grid gap-3 sm:grid-cols-3">
         {quickLinks.map((link) => (

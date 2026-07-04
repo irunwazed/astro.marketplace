@@ -36,6 +36,13 @@ export const myStoreMembers: StoreMember[] = [
     role: "staff",
     status: "diundang",
   },
+  {
+    id: "M-4",
+    name: "Joko Prasetyo",
+    email: "joko.prasetyo@example.com",
+    role: "kurir",
+    status: "aktif",
+  },
 ];
 
 const image = (text: string) =>

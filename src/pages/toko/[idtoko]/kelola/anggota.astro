@@ -1,0 +1,21 @@
+---
+import KelolaShell from "../../../../components/features/KelolaShell.astro";
+import StoreMembersManager from "../../../../components/react/StoreMembersManager";
+import { myStore, myStoreMembers } from "../../../../data/my-store";
+
+export function getStaticPaths() {
+  return [{ params: { idtoko: "ST-1" } }, { params: { idtoko: "ST-2" } }];
+}
+
+const { idtoko } = Astro.params;
+const store = idtoko === "ST-1" ? myStore : { name: "Kopi Tani Makmur", logo: "https://placehold.co/128x128/df2463/ffffff?text=KT" };
+const initialMembers = idtoko === "ST-1" ? myStoreMembers : [];
+---
+
+<KelolaShell storeId={idtoko} storeName={store.name} storeLogo={store.logo} active="anggota" title="Kelola Anggota">
+  <header class="mb-6">
+    <p class="text-xs font-bold uppercase tracking-[0.18em] text-amber-deep">Penjual</p>
+    <h1 class="mt-1 font-display text-3xl font-bold">Kelola Anggota</h1>
+  </header>
+  <StoreMembersManager storeId={idtoko} initialMembers={initialMembers} client:load />
+</KelolaShell>

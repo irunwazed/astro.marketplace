@@ -76,18 +76,39 @@ export default function HeaderActions() {
         )}
       </a>
       {session ? (
-        <a
-          href="/profile"
-          className="flex items-center gap-2 rounded-full border border-ink/10 py-1 pl-1 pr-3 transition-colors hover:border-brand"
-        >
-          <span
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-brand text-xs font-bold text-white"
-            aria-hidden="true"
+        <>
+          <a
+            href="/toko/buat"
+            className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-ink/10 px-3 py-2 text-xs font-semibold text-ink transition-colors hover:border-brand hover:text-brand"
           >
-            {initialsOf(session.name)}
-          </span>
-          <span className="text-sm font-semibold">{shortName(session.name)}</span>
-        </a>
+            <svg
+              className="h-3.5 w-3.5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M3 9l1-5h16l1 5M5 9v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9M9 21v-6h6v6" />
+            </svg>
+            Gabung Mitra
+          </a>
+          <a
+            href="/profile"
+            aria-label={`Profil ${session.name}`}
+            className="flex items-center gap-2 rounded-full border border-ink/10 py-1 pl-1 pr-3 transition-colors hover:border-brand"
+          >
+            <span
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-brand text-xs font-bold text-white"
+              aria-hidden="true"
+            >
+              {initialsOf(session.name)}
+            </span>
+            <span className="text-sm font-semibold">{shortName(session.name)}</span>
+          </a>
+        </>
       ) : (
         <a
           href="/login"

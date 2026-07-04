@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { cn } from "../../lib/utils";
 import { addToCart } from "../../lib/cart";
+import { requireLogin } from "../../lib/session";
 import type { Product } from "../../types";
 
 export const formatIDR = (value: number) =>
@@ -17,6 +18,7 @@ export default function ProductCard({ product }: { product: Product }) {
   useEffect(() => () => clearTimeout(timer.current), []);
 
   const handleAdd = () => {
+    if (!requireLogin(window.location.pathname)) return;
     addToCart(product);
     setAdded(true);
     clearTimeout(timer.current);

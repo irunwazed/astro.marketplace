@@ -1,0 +1,30 @@
+---
+import KelolaShell from "../../../../components/features/KelolaShell.astro";
+import StoreProductsManager from "../../../../components/react/StoreProductsManager";
+import { myStore, myStoreProducts } from "../../../../data/my-store";
+import { products } from "../../../../data/products";
+import { categories } from "../../../../data/stores";
+
+export function getStaticPaths() {
+  return [{ params: { idtoko: "ST-1" } }, { params: { idtoko: "ST-2" } }];
+}
+
+const { idtoko } = Astro.params;
+const store = idtoko === "ST-1" ? myStore : { name: "Kopi Tani Makmur", logo: "https://placehold.co/128x128/df2463/ffffff?text=KT" };
+const initialProducts =
+  idtoko === "ST-1" ? myStoreProducts : products.filter((p) => p.seller === "Kopi Tani Makmur");
+const categoryOptions = categories.filter((c) => c !== "PPOB & Pulsa");
+---
+
+<KelolaShell storeId={idtoko} storeName={store.name} storeLogo={store.logo} active="produk" title="Kelola Produk">
+  <header class="mb-6">
+    <p class="text-xs font-bold uppercase tracking-[0.18em] text-amber-deep">Penjual</p>
+    <h1 class="mt-1 font-display text-3xl font-bold">Kelola Produk</h1>
+  </header>
+  <StoreProductsManager
+    storeId={idtoko}
+    initialProducts={initialProducts}
+    categoryOptions={categoryOptions}
+    client:load
+  />
+</KelolaShell>

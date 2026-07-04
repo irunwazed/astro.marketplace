@@ -9,6 +9,7 @@ import {
   trackingIndex,
 } from "../../lib/order-status";
 import { formatIDR } from "./ProductCard";
+import OrderCostSummary from "./OrderCostSummary";
 import type { DropPoint, Order } from "../../types";
 
 interface Props {
@@ -198,10 +199,7 @@ export default function OrderTracking({ dropPoints }: Props) {
               </li>
             ))}
           </ul>
-          <p className="mt-2 flex justify-between border-t border-ink/10 pt-2 text-sm">
-            <span className="font-semibold">Total</span>
-            <span className="font-display text-lg font-bold">{formatIDR(order.total)}</span>
-          </p>
+          <OrderCostSummary order={order} />
         </section>
       </div>
     </div>

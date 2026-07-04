@@ -33,8 +33,11 @@ export default function LoginForm() {
     if (valid) {
       // Sesi demo: tanpa backend, nama diambil dari alamat email.
       login({ name: nameFromEmail(email), email });
+      // Redirect balik ke halaman asal bila ada ?next=... (mis. dari guard wajib login),
+      // bila tidak ada kembali ke /profile.
+      const nextUrl = new URLSearchParams(window.location.search).get("next");
       setTimeout(() => {
-        window.location.href = "/profile";
+        window.location.href = nextUrl ?? "/profile";
       }, 600);
     }
   };

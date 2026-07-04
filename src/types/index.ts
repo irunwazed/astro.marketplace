@@ -24,6 +24,12 @@ export interface Product {
   description: string;
   /** Hanya produk published yang tampil di katalog pembeli. */
   published: boolean;
+  /** Slug URL produk, mis. "kopi-robusta-250gr". */
+  slug?: string;
+  /** Berat kemasan dalam gram — untuk kalkulasi ongkir. */
+  weight?: number;
+  /** Dimensi kemasan (cm) — untuk kalkulasi ongkir. */
+  dimensions?: { length: number; width: number; height: number };
 }
 
 /** Ringkasan toko untuk strip mitra di beranda. */
@@ -55,7 +61,7 @@ export interface StoreMember {
   id: string;
   name: string;
   email: string;
-  role: "owner" | "staff";
+  role: "owner" | "staff" | "kurir";
   status: "aktif" | "diundang";
 }
 
@@ -80,6 +86,24 @@ export interface DropPoint {
   name: string;
   address: string;
   location: GeoPoint;
+  /** Ongkir flat (IDR) ke drop point ini. Ditanggung pembeli. */
+  shippingCost: number;
+}
+
+/**
+ * Drop point milik sebuah toko — bisa master (dari daftar pusat) atau custom
+ * (dibuat toko sendiri lewat map). Master dipakai via Store.dropPointIds,
+ * custom disimpan per toko.
+ */
+export interface StoreDropPoint {
+  id: string;
+  storeId: string;
+  name: string;
+  address: string;
+  location: GeoPoint;
+  shippingCost: number;
+  /** true bila dibuat oleh toko sendiri; false bila dari master list. */
+  isCustom: boolean;
 }
 
 export interface CartItem {
@@ -125,7 +149,14 @@ export interface Order {
   date: string;
   storeName: string;
   items: OrderItem[];
+  /** Total akhir yang dibayar pembeli (subtotal + ongkir + admin, bila ada). */
   total: number;
+  /** Subtotal harga barang (Σ price × qty). Opsional — order lama mungkin tidak punya. */
+  subtotal?: number;
+  /** Ongkir ke drop point. Opsional — order lama mungkin tidak punya. */
+  ongkir?: number;
+  /** Biaya admin QRIS (0,7%, pembulatan ke atas). Opsional — order lama mungkin tidak punya. */
+  adminFee?: number;
   dropPointId: string;
   delivery?: DeliveryLocation;
   payment: "QRIS";

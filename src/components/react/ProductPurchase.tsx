@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { addToCart } from "../../lib/cart";
+import { requireLogin } from "../../lib/session";
 import { getProduct } from "../../services/product-service";
 import { formatIDR } from "./ProductCard";
 import type { Product } from "../../types";
@@ -23,6 +24,7 @@ export default function ProductPurchase({ product }: { product: Product }) {
   };
 
   const handleAdd = async () => {
+    if (!requireLogin(window.location.pathname)) return;
     setBusy(true);
     addToCart(await freshProduct(), qty);
     setBusy(false);
@@ -31,6 +33,7 @@ export default function ProductPurchase({ product }: { product: Product }) {
   };
 
   const handleBuyNow = async () => {
+    if (!requireLogin(window.location.pathname)) return;
     setBusy(true);
     addToCart(await freshProduct(), qty);
     window.location.href = "/cart";

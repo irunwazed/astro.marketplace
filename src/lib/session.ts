@@ -5,6 +5,12 @@
 export interface Session {
   name: string;
   email: string;
+  /** Username unik anggota. */
+  username?: string;
+  /** Nomor HP anggota. */
+  phone?: string;
+  /** Nomor anggota koperasi — di-generate backend saat registrasi. */
+  memberNo?: string;
 }
 
 const KEY = "pk-session";
@@ -47,4 +53,18 @@ export function initialsOf(name: string): string {
     .slice(0, 2)
     .join("")
     .toUpperCase();
+}
+
+/**
+ * Wajib login sebelum aksi sensitif (tambah cart, checkout).
+ * Bila belum login, redirect ke /login?next=<next> dan kembalikan false.
+ * Bila sudah login, kembalikan true tanpa efek samping.
+ *
+ * `next` adalah URL tujuan setelah login berhasil (mis. halaman saat ini
+ * atau URL checkout yang akan dibuka).
+ */
+export function requireLogin(next: string): boolean {
+  if (getSession()) return true;
+  window.location.href = `/login?next=${encodeURIComponent(next)}`;
+  return false;
 }

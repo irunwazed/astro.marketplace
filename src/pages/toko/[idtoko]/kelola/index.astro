@@ -1,0 +1,45 @@
+---
+import KelolaShell from "../../../../components/features/KelolaShell.astro";
+import StoreDashboardHome from "../../../../components/react/StoreDashboardHome";
+import { myStore, myStoreMembers, myStoreProducts } from "../../../../data/my-store";
+import { products } from "../../../../data/products";
+import { offices } from "../../../../data/offices";
+import { dropPoints } from "../../../../data/drop-points";
+import { orders } from "../../../../data/orders";
+import type { Store } from "../../../../types";
+
+export function getStaticPaths() {
+  return [{ params: { idtoko: "ST-1" } }, { params: { idtoko: "ST-2" } }];
+}
+
+const { idtoko } = Astro.params;
+
+const store: Store =
+  idtoko === "ST-1"
+    ? myStore
+    : {
+        id: "ST-2",
+        name: "Kopi Tani Makmur",
+        logo: "https://placehold.co/128x128/df2463/ffffff?text=KT",
+        description: "Kopi robusta & arabika dari petani lokal, disangrai dan dikemas segar.",
+        address: "Jl. Perkebunan No. 5, Pasar Minggu, Jakarta Selatan",
+        location: { lat: -6.3, lng: 106.85 },
+        dropPointIds: ["DP-1", "DP-3"],
+      };
+
+const members = idtoko === "ST-1" ? myStoreMembers : [];
+const storeProducts =
+  idtoko === "ST-1" ? myStoreProducts : products.filter((p) => p.seller === "Kopi Tani Makmur");
+---
+
+<KelolaShell storeId={idtoko} storeName={store.name} storeLogo={store.logo} active="dashboard" title={`Kelola ${store.name}`}>
+  <StoreDashboardHome
+    store={store}
+    products={storeProducts}
+    members={members}
+    dropPoints={dropPoints}
+    offices={offices}
+    orders={orders}
+    client:load
+  />
+</KelolaShell>
