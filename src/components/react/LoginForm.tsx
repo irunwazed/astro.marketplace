@@ -1,5 +1,6 @@
 import { useState, type SyntheticEvent } from "react";
 import FormField from "./FormField";
+import { login, nameFromEmail } from "../../lib/session";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -27,7 +28,15 @@ export default function LoginForm() {
     e.preventDefault();
     const next = validate();
     setErrors(next);
-    setSuccess(Object.keys(next).length === 0);
+    const valid = Object.keys(next).length === 0;
+    setSuccess(valid);
+    if (valid) {
+      // Sesi demo: tanpa backend, nama diambil dari alamat email.
+      login({ name: nameFromEmail(email), email });
+      setTimeout(() => {
+        window.location.href = "/profile";
+      }, 600);
+    }
   };
 
   return (
@@ -52,16 +61,16 @@ export default function LoginForm() {
       />
       <button
         type="submit"
-        className="w-full rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-700"
+        className="w-full rounded-md bg-forest px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-forest-dark"
       >
-        Login
+        Masuk
       </button>
       {success && (
-        <p className="text-sm text-green-600">Form valid (demo, belum terhubung ke backend).</p>
+        <p className="text-sm text-forest">Berhasil masuk — mengalihkan ke profil…</p>
       )}
-      <p className="text-center text-sm text-slate-600">
+      <p className="text-center text-sm text-moss">
         Belum punya akun?{" "}
-        <a href="/register" className="font-medium text-slate-900 hover:underline">
+        <a href="/register" className="font-semibold text-forest hover:underline">
           Daftar
         </a>
       </p>

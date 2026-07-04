@@ -11,10 +11,10 @@ const { variant = "primary", class: className } = Astro.props;
 
 <button
   class={cn(
-    "rounded-md px-4 py-2 text-sm font-medium transition-colors",
+    "rounded-full px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest",
     variant === "primary"
-      ? "bg-slate-900 text-white hover:bg-slate-700"
-      : "bg-slate-100 text-slate-900 hover:bg-slate-200",
+      ? "bg-forest text-white hover:bg-forest-dark"
+      : "border border-ink/10 bg-white text-ink hover:border-forest hover:text-forest",
     className,
   )}
 >

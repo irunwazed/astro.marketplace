@@ -1,1 +1,21 @@
 @import "tailwindcss";
+
+/*
+ * Tema "Pasar Koperasi": hijau hutan di atas krem, aksen amber & terakota,
+ * display serif untuk judul dan harga.
+ */
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+
+  --color-forest: #1e5443;
+  --color-forest-dark: #163f32;
+  --color-forest-deep: #12251e;
+  --color-cream: #f4f4ef;
+  --color-amber: #d9a43f;
+  --color-amber-deep: #a1751f;
+  --color-terracotta: #c96a55;
+  --color-ink: #1f2b25;
+  --color-moss: #67756d;
+}

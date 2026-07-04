@@ -1,0 +1,18 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import SiteHeader from "../../components/features/SiteHeader.astro";
+import SiteFooter from "../../components/features/SiteFooter.astro";
+import OrderTracking from "../../components/react/OrderTracking";
+import { dropPoints } from "../../data/drop-points";
+---
+
+<Layout title="Lacak Pesanan — Pasar Koperasi">
+  <SiteHeader showSearch={false} showCategories={false} />
+  <main class="mx-auto max-w-3xl px-4 py-12">
+    <a href="/orders" class="mb-4 inline-block text-sm font-semibold text-forest hover:underline">
+      ← Semua pesanan
+    </a>
+    <OrderTracking dropPoints={dropPoints} client:load />
+  </main>
+  <SiteFooter />
+</Layout>

@@ -1,0 +1,198 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import SiteHeader from "../../components/features/SiteHeader.astro";
+import SiteFooter from "../../components/features/SiteFooter.astro";
+import { orders } from "../../data/orders";
+import { dropPoints } from "../../data/drop-points";
+import {
+  ORDER_STATUS_BADGE,
+  ORDER_STATUS_LABEL,
+  TRACKING_STEPS,
+  trackingIndex,
+} from "../../lib/order-status";
+import { formatIDR } from "../../components/react/ProductCard";
+import type { Order } from "../../types";
+
+export function getStaticPaths() {
+  return orders.map((order) => ({ params: { id: order.id }, props: { order } }));
+}
+
+interface Props {
+  order: Order;
+}
+
+const { order } = Astro.props;
+const dropPoint = dropPoints.find((dp) => dp.id === order.dropPointId);
+const reached = trackingIndex(order.status);
+
+const formatDate = (iso: string) =>
+  new Intl.DateTimeFormat("id-ID", { day: "numeric", month: "long", year: "numeric" }).format(
+    new Date(iso),
+  );
+---
+
+<Layout title={`${order.id} — Pasar Koperasi`}>
+  <SiteHeader showSearch={false} showCategories={false} />
+  <main class="mx-auto max-w-3xl px-4 py-12">
+    <a href="/orders" class="text-sm font-semibold text-forest hover:underline">
+      ← Semua pesanan
+    </a>
+
+    <header class="mt-4 mb-7 flex flex-wrap items-center justify-between gap-3">
+      <div>
+        <h1 class="font-display text-3xl font-bold">{order.id}</h1>
+        <p class="mt-1 text-sm text-moss">
+          {formatDate(order.date)} · {order.storeName}
+        </p>
+      </div>
+      <span
+        class:list={[
+          "rounded-full px-3.5 py-1.5 text-xs font-bold uppercase",
+          ORDER_STATUS_BADGE[order.status],
+        ]}
+      >
+        {ORDER_STATUS_LABEL[order.status]}
+      </span>
+    </header>
+
+    <section class="rounded-xl border border-ink/10 bg-white p-6 shadow-sm shadow-ink/5">
+      <h2 class="font-display text-lg font-bold">Lacak Pesanan</h2>
+
+      {
+        order.status === "MENUNGGU_PEMBAYARAN" && (
+          <p class="mt-3 rounded-lg bg-amber/15 px-4 py-3 text-sm font-medium text-amber-deep">
+            Selesaikan pembayaran QRIS Anda — pesanan mulai diproses setelah pembayaran diterima.
+          </p>
+        )
+      }
+      {
+        order.status === "DIBAYAR" && (
+          <p class="mt-3 rounded-lg bg-forest/10 px-4 py-3 text-sm font-medium text-forest">
+            Pembayaran diterima — toko akan segera menyiapkan pesanan.
+          </p>
+        )
+      }
+      {
+        order.status === "DIBATALKAN" && (
+          <p class="mt-3 rounded-lg bg-terracotta/15 px-4 py-3 text-sm font-medium text-terracotta">
+            Pesanan dibatalkan.
+          </p>
+        )
+      }
+
+      <ol class="mt-5">
+        {
+          TRACKING_STEPS.map((step, i) => {
+            const done = reached >= i;
+            const current = i === reached;
+            const last = i === TRACKING_STEPS.length - 1;
+            return (
+              <li class="relative flex gap-4 pb-6 last:pb-0">
+                {!last && (
+                  <span
+                    class:list={[
+                      "absolute left-3.75 top-8 h-[calc(100%-2rem)] w-0.5",
+                      i < reached ? "bg-forest" : "bg-ink/10",
+                    ]}
+                    aria-hidden="true"
+                  />
+                )}
+                <span
+                  class:list={[
+                    "flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold",
+                    done ? "bg-forest text-white" : "border-2 border-ink/15 bg-white text-moss",
+                  ]}
+                  aria-hidden="true"
+                >
+                  {done ? (
+                    <svg
+                      class="h-4 w-4"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="m4 12.5 5 5L20 7" />
+                    </svg>
+                  ) : (
+                    i + 1
+                  )}
+                </span>
+                <div class="pt-1">
+                  <p
+                    class:list={[
+                      "text-sm font-semibold",
+                      done ? "text-ink" : "text-moss",
+                      current && "text-forest",
+                    ]}
+                  >
+                    {step.label}
+                    {current && (
+                      <span class="ml-2 rounded-full bg-forest/10 px-2 py-0.5 text-[10px] font-bold uppercase text-forest">
+                        Saat ini
+                      </span>
+                    )}
+                  </p>
+                  <p class="text-xs text-moss">{step.hint}</p>
+                </div>
+              </li>
+            );
+          })
+        }
+      </ol>
+    </section>
+
+    <div class="mt-6 grid gap-6 sm:grid-cols-2">
+      <section class="rounded-xl border border-ink/10 bg-white p-5">
+        <h2 class="font-display text-lg font-bold">Drop Point Tujuan</h2>
+        {
+          dropPoint ? (
+            <>
+              <p class="mt-2 text-sm font-semibold">{dropPoint.name}</p>
+              <p class="text-xs text-moss">{dropPoint.address}</p>
+              <p class="mt-1 text-xs text-moss">
+                Titik: {dropPoint.location.lat}, {dropPoint.location.lng}
+              </p>
+            </>
+          ) : (
+            <p class="mt-2 text-sm text-moss">Drop point tidak ditemukan.</p>
+          )
+        }
+        <p class="mt-3 border-t border-ink/10 pt-3 text-xs text-moss">
+          Pembayaran: <strong class="text-ink">{order.payment}</strong>
+        </p>
+      </section>
+
+      <section class="rounded-xl border border-ink/10 bg-white p-5">
+        <h2 class="font-display text-lg font-bold">Barang</h2>
+        <ul class="mt-2 divide-y divide-ink/10">
+          {
+            order.items.map((item) => (
+              <li class="flex items-center gap-3 py-2.5">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  class="h-11 w-11 shrink-0 rounded-lg object-cover"
+                />
+                <div class="min-w-0 flex-1">
+                  <p class="truncate text-sm font-semibold">{item.name}</p>
+                  <p class="text-xs text-moss">
+                    {item.qty} × {formatIDR(item.price)}
+                  </p>
+                </div>
+                <p class="text-sm font-semibold">{formatIDR(item.price * item.qty)}</p>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="mt-2 flex justify-between border-t border-ink/10 pt-2 text-sm">
+          <span class="font-semibold">Total</span>
+          <span class="font-display text-lg font-bold">{formatIDR(order.total)}</span>
+        </p>
+      </section>
+    </div>
+  </main>
+  <SiteFooter />
+</Layout>

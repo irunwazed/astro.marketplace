@@ -1,0 +1,79 @@
+---
+const columns = [
+  {
+    title: "Belanja",
+    links: [
+      { label: "Semua Produk", href: "/products" },
+      { label: "Mitra UMKM", href: "/products" },
+      { label: "Promo Minggu Ini", href: "/products" },
+      { label: "PPOB & Pulsa", href: "/products?kategori=PPOB%20%26%20Pulsa" },
+    ],
+  },
+  {
+    title: "Akun Saya",
+    links: [
+      { label: "Pesanan Saya", href: "/orders" },
+      { label: "Toko Saya", href: "/toko" },
+      { label: "Keranjang", href: "/cart" },
+      { label: "Profil", href: "/profile" },
+    ],
+  },
+];
+---
+
+<footer class="mt-16 bg-forest-deep text-white">
+  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+    <div>
+      <a href="/" class="flex items-center gap-2.5">
+        <span
+          class="flex h-9 w-9 items-center justify-center rounded-lg bg-white font-display text-lg font-bold text-forest"
+          aria-hidden="true"
+        >
+          K
+        </span>
+        <span>
+          <span class="block font-display text-lg font-bold leading-tight">Pasar Koperasi</span>
+          <span class="block text-[10px] font-semibold uppercase tracking-[0.18em] text-amber">
+            Sejahtera Bersama
+          </span>
+        </span>
+      </a>
+      <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
+        Portal belanja resmi koperasi untuk anggota, menghubungkan langsung ke produk UMKM mitra
+        lokal.
+      </p>
+    </div>
+    {
+      columns.map((column) => (
+        <nav aria-label={column.title}>
+          <h2 class="text-sm font-bold">{column.title}</h2>
+          <ul class="mt-4 space-y-2.5 text-sm text-white/60">
+            {column.links.map((link) => (
+              <li>
+                <a href={link.href} class="transition-colors hover:text-white">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ))
+    }
+    <div>
+      <h2 class="text-sm font-bold">Hubungi Kami</h2>
+      <ul class="mt-4 space-y-2.5 text-sm text-white/60">
+        <li>Kantor Koperasi Pusat</li>
+        <li>WhatsApp: 0812-xxxx-xxxx</li>
+        <li>Senin–Sabtu, 08.00–17.00</li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div
+      class="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-4 text-xs text-white/45 sm:flex-row sm:justify-between"
+    >
+      <p>© 2026 Koperasi Sejahtera Bersama</p>
+      <p>Sistem Koperasi Digital</p>
+    </div>
+  </div>
+</footer>

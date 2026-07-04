@@ -1,0 +1,22 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import SiteHeader from "../../components/features/SiteHeader.astro";
+import SiteFooter from "../../components/features/SiteFooter.astro";
+import Card from "../../components/ui/Card.astro";
+import StoreCreateForm from "../../components/react/StoreCreateForm";
+---
+
+<Layout title="Buat Toko — Pasar Koperasi">
+  <SiteHeader showSearch={false} showCategories={false} />
+  <main class="mx-auto flex max-w-md flex-col px-4 py-16">
+    <h1 class="mb-2 text-center font-display text-3xl font-bold">Buat Toko</h1>
+    <p class="mb-6 text-center text-sm text-moss">
+      Anda akan menjadi <strong class="text-ink">owner</strong> toko ini dan bisa mengundang
+      anggota lain.
+    </p>
+    <Card class="p-6">
+      <StoreCreateForm client:load />
+    </Card>
+  </main>
+  <SiteFooter />
+</Layout>

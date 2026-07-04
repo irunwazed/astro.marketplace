@@ -1,0 +1,27 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import SiteHeader from "../../../components/features/SiteHeader.astro";
+import SiteFooter from "../../../components/features/SiteFooter.astro";
+import Card from "../../../components/ui/Card.astro";
+import ProductForm from "../../../components/react/ProductForm";
+import { categories } from "../../../data/stores";
+import { myStore } from "../../../data/my-store";
+
+// PPOB & Pulsa adalah layanan, bukan kategori produk fisik.
+const categoryOptions = categories.filter((c) => c !== "PPOB & Pulsa");
+---
+
+<Layout title="Tambah Produk — Pasar Koperasi">
+  <SiteHeader showSearch={false} showCategories={false} />
+  <main class="mx-auto flex max-w-xl flex-col px-4 py-12">
+    <p class="text-xs font-bold uppercase tracking-[0.18em] text-amber-deep">{myStore.name}</p>
+    <h1 class="mt-1 mb-6 font-display text-3xl font-bold">Tambah Produk</h1>
+    <Card class="p-6">
+      <ProductForm categoryOptions={categoryOptions} client:load />
+    </Card>
+    <a href="/toko/kelola" class="mt-4 text-sm font-semibold text-forest hover:underline">
+      ← Kembali ke kelola toko
+    </a>
+  </main>
+  <SiteFooter />
+</Layout>

@@ -1,0 +1,111 @@
+---
+import { cn } from "../../lib/utils";
+import { categories } from "../../data/stores";
+import HeaderActions from "../react/HeaderActions";
+
+interface Props {
+  /** Tampilkan kolom pencarian di header (form GET ke /products). */
+  showSearch?: boolean;
+  /** Tampilkan deretan chip kategori di bawah header. */
+  showCategories?: boolean;
+}
+
+const { showSearch = true, showCategories = true } = Astro.props;
+---
+
+<div class="bg-forest-deep text-xs text-white/85">
+  <div class="mx-auto flex max-w-6xl items-center justify-center gap-4 px-4 py-2 sm:justify-between">
+    <span class="hidden w-40 sm:block"></span>
+    <p class="text-center">
+      🎁 Gratis ongkir untuk anggota koperasi · Belanja hari ini, poin langsung masuk
+      <strong class="font-semibold text-white">Simpanan Sukarela</strong>
+    </p>
+    <span class="hidden w-40 shrink-0 text-right sm:block">
+      <a href="/toko" class="font-semibold text-white hover:underline">Toko Saya</a>
+      <span class="mx-1 text-white/40">·</span>
+      <a href="/orders" class="font-semibold text-white hover:underline">Pesanan</a>
+    </span>
+  </div>
+</div>
+
+<header class="border-b border-ink/10 bg-white">
+  <div class="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3.5">
+    <a href="/" class="flex shrink-0 items-center gap-2.5">
+      <span
+        class="flex h-10 w-10 items-center justify-center rounded-lg bg-forest font-display text-xl font-bold text-white"
+        aria-hidden="true"
+      >
+        K
+      </span>
+      <span>
+        <span class="block font-display text-lg font-bold leading-tight text-forest">
+          Pasar Koperasi
+        </span>
+        <span class="block text-[10px] font-semibold uppercase tracking-[0.18em] text-moss">
+          Belanja Produk Anggota & UMKM
+        </span>
+      </span>
+    </a>
+
+    {
+      showSearch && (
+        <form action="/products" method="get" class="relative hidden flex-1 md:block" role="search">
+          <svg
+            class="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-moss"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="m20 20-3.5-3.5" />
+          </svg>
+          <label for="header-search" class="sr-only">
+            Cari produk
+          </label>
+          <input
+            id="header-search"
+            type="search"
+            name="q"
+            placeholder="Cari beras, kopi, kerajinan, sembako..."
+            class="w-full rounded-full border border-transparent bg-cream py-2.5 pl-11 pr-4 text-sm outline-none transition-colors placeholder:text-moss focus:border-forest focus:bg-white focus:ring-2 focus:ring-forest/20"
+          />
+        </form>
+      )
+    }
+
+    <HeaderActions client:load />
+  </div>
+
+  {
+    showCategories && (
+      <nav class="mx-auto max-w-6xl px-4 pb-3" aria-label="Kategori produk">
+        <ul class="flex gap-2 overflow-x-auto pb-1">
+          <li class="shrink-0">
+            <a
+              href="/products"
+              class="block rounded-full bg-forest px-4 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-forest-dark"
+            >
+              Semua Produk
+            </a>
+          </li>
+          {categories.map((category) => (
+            <li class="shrink-0">
+              <a
+                href={`/products?kategori=${encodeURIComponent(category)}`}
+                class={cn(
+                  "block rounded-full border border-ink/10 bg-white px-4 py-1.5 text-sm font-medium",
+                  "text-ink/80 transition-colors hover:border-forest hover:text-forest",
+                )}
+              >
+                {category}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    )
+  }
+</header>

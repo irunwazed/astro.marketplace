@@ -1,0 +1,117 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import SiteHeader from "../../components/features/SiteHeader.astro";
+import SiteFooter from "../../components/features/SiteFooter.astro";
+import ProductPurchase from "../../components/react/ProductPurchase";
+import { products } from "../../data/products";
+import { formatIDR } from "../../components/react/ProductCard";
+import type { Product } from "../../types";
+
+export function getStaticPaths() {
+  // Hanya produk PUBLISHED yang punya halaman detail di katalog.
+  return products
+    .filter((p) => p.published)
+    .map((product) => ({ params: { id: product.id }, props: { product } }));
+}
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+const discount = product.originalPrice
+  ? Math.round((1 - product.price / product.originalPrice) * 100)
+  : 0;
+---
+
+<Layout title={`${product.name} — Pasar Koperasi`}>
+  <SiteHeader />
+  <main class="mx-auto max-w-6xl px-4 py-10">
+    <a href="/products" class="text-sm font-semibold text-forest hover:underline">
+      ← Kembali ke katalog
+    </a>
+
+    <div class="mt-5 grid gap-8 lg:grid-cols-[1fr_1fr_300px]">
+      <div class="relative overflow-hidden rounded-2xl border border-ink/10">
+        <img src={product.image} alt={product.name} class="aspect-square w-full object-cover" />
+        {
+          product.badge && (
+            <span
+              class:list={[
+                "absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-bold text-white",
+                product.badge === "Terlaris" ? "bg-terracotta" : "bg-forest",
+              ]}
+            >
+              {product.badge}
+            </span>
+          )
+        }
+      </div>
+
+      <div>
+        <p class="flex items-center gap-1.5 text-sm font-medium text-forest">
+          <svg class="h-2.5 w-2.5" viewBox="0 0 8 8" fill="none" aria-hidden="true">
+            <circle cx="4" cy="4" r="3" stroke="currentColor" stroke-width="1.5"></circle>
+          </svg>
+          {product.seller}
+        </p>
+        <h1 class="mt-2 font-display text-3xl font-bold leading-tight">{product.name}</h1>
+        <p class="mt-2 text-sm text-moss">
+          <span class="text-amber-deep" aria-hidden="true">★</span>
+          {product.rating.toFixed(1)} · {product.sold} terjual
+        </p>
+
+        <div class="mt-4 flex items-end gap-3">
+          <p class="font-display text-3xl font-bold tracking-tight">{formatIDR(product.price)}</p>
+          {
+            product.originalPrice && (
+              <p class="pb-1 text-sm text-moss">
+                <span class="line-through">{formatIDR(product.originalPrice)}</span>
+                <span class="ml-1.5 rounded-full bg-terracotta/15 px-2 py-0.5 text-xs font-bold text-terracotta">
+                  -{discount}%
+                </span>
+              </p>
+            )
+          }
+        </div>
+
+        <dl class="mt-5 grid grid-cols-2 gap-3 text-sm">
+          <div class="rounded-lg bg-white p-3">
+            <dt class="text-xs text-moss">Volume / Berat</dt>
+            <dd class="mt-0.5 font-semibold">{product.volume}</dd>
+          </div>
+          <div class="rounded-lg bg-white p-3">
+            <dt class="text-xs text-moss">Stok</dt>
+            <dd class="mt-0.5 font-semibold">{product.stock} tersedia</dd>
+          </div>
+        </dl>
+
+        <div class="mt-5">
+          <p class="text-xs font-bold uppercase tracking-[0.18em] text-amber-deep">Kategori</p>
+          <ul class="mt-2 flex flex-wrap gap-2">
+            {
+              product.categories.map((c) => (
+                <li>
+                  <a
+                    href={`/products?kategori=${encodeURIComponent(c)}`}
+                    class="block rounded-full border border-ink/10 bg-white px-3 py-1 text-xs font-medium text-ink/80 transition-colors hover:border-forest hover:text-forest"
+                  >
+                    {c}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="mt-5">
+          <p class="text-xs font-bold uppercase tracking-[0.18em] text-amber-deep">Penjelasan</p>
+          <p class="mt-2 text-sm leading-relaxed text-ink/80">{product.description}</p>
+        </div>
+      </div>
+
+      <ProductPurchase product={product} client:load />
+    </div>
+  </main>
+  <SiteFooter />
+</Layout>

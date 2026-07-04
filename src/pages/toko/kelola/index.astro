@@ -1,0 +1,20 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import StoreDashboard from "../../../components/react/StoreDashboard";
+import { myStore, myStoreMembers, myStoreProducts } from "../../../data/my-store";
+import { offices } from "../../../data/offices";
+import { dropPoints } from "../../../data/drop-points";
+import { orders } from "../../../data/orders";
+---
+
+<Layout title={`Kelola ${myStore.name} — Pasar Koperasi`}>
+  <StoreDashboard
+    store={myStore}
+    members={myStoreMembers}
+    products={myStoreProducts}
+    offices={offices}
+    dropPoints={dropPoints}
+    orders={orders}
+    client:load
+  />
+</Layout>

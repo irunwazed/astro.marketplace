@@ -21,7 +21,7 @@ export default function FormField({
 }: Props) {
   return (
     <div>
-      <label htmlFor={name} className="mb-1 block text-sm font-medium text-slate-700">
+      <label htmlFor={name} className="mb-1 block text-sm font-medium text-ink/80">
         {label}
       </label>
       <input
@@ -32,8 +32,8 @@ export default function FormField({
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
         className={cn(
-          "w-full rounded-md border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-slate-900/20",
-          error ? "border-red-400" : "border-slate-300",
+          "w-full rounded-md border px-3 py-2 text-sm outline-none focus:border-forest focus:ring-2 focus:ring-forest/20",
+          error ? "border-red-400" : "border-ink/15",
         )}
       />
       {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
