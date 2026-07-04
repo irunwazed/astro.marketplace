@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CART_EVENT, cartCount } from "../../lib/cart";
+import { bumpCart } from "../../lib/fly-to-cart";
+import { WISHLIST_EVENT, wishlistCount } from "../../lib/wishlist";
 import { SESSION_EVENT, getSession, initialsOf, type Session } from "../../lib/session";
 
 function shortName(name: string): string {
@@ -9,19 +11,27 @@ function shortName(name: string): string {
 
 export default function HeaderActions() {
   const [count, setCount] = useState(0);
+  const [wishCount, setWishCount] = useState(0);
   const [session, setSession] = useState<Session | null>(null);
+  const prevCount = useRef(0);
 
   useEffect(() => {
     const sync = () => {
-      setCount(cartCount());
+      const next = cartCount();
+      if (next > prevCount.current) bumpCart();
+      prevCount.current = next;
+      setCount(next);
+      setWishCount(wishlistCount());
       setSession(getSession());
     };
     sync();
     window.addEventListener(CART_EVENT, sync);
+    window.addEventListener(WISHLIST_EVENT, sync);
     window.addEventListener(SESSION_EVENT, sync);
     window.addEventListener("storage", sync);
     return () => {
       window.removeEventListener(CART_EVENT, sync);
+      window.removeEventListener(WISHLIST_EVENT, sync);
       window.removeEventListener(SESSION_EVENT, sync);
       window.removeEventListener("storage", sync);
     };
@@ -29,10 +39,10 @@ export default function HeaderActions() {
 
   return (
     <div className="ml-auto flex shrink-0 items-center gap-2">
-      <button
-        type="button"
-        aria-label="Wishlist"
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 text-ink transition-colors hover:border-brand hover:text-brand"
+      <a
+        href="/wishlist"
+        aria-label={`Wishlist, ${wishCount} item`}
+        className="relative flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 text-ink transition-colors hover:border-brand hover:text-brand"
       >
         <svg
           className="h-4.5 w-4.5"
@@ -46,7 +56,15 @@ export default function HeaderActions() {
         >
           <path d="M19 14c1.5-1.5 3-3.4 3-5.5A4.5 4.5 0 0 0 17.5 4c-1.8 0-3 .7-4.1 2l-1.4 1.5L10.6 6C9.5 4.7 8.3 4 6.5 4A4.5 4.5 0 0 0 2 8.5c0 2.1 1.5 4 3 5.5l7 7Z" />
         </svg>
-      </button>
+        {wishCount > 0 && (
+          <span
+            className="absolute -right-0.5 -top-0.5 flex h-4.5 min-w-4.5 items-center justify-center rounded-full bg-rose px-1 text-[10px] font-bold text-white"
+            aria-hidden="true"
+          >
+            {wishCount}
+          </span>
+        )}
+      </a>
       <a
         href="/cart"
         aria-label={`Keranjang, ${count} item`}

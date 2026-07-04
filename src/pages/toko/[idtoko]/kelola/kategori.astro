@@ -1,0 +1,22 @@
+---
+import KelolaShell from "../../../../components/features/KelolaShell.astro";
+import StoreCategoriesManager from "../../../../components/react/StoreCategoriesManager";
+import { myStore } from "../../../../data/my-store";
+import { categories } from "../../../../data/stores";
+
+export function getStaticPaths() {
+  return [{ params: { idtoko: "ST-1" } }, { params: { idtoko: "ST-2" } }];
+}
+
+const { idtoko } = Astro.params;
+const store = idtoko === "ST-1" ? myStore : { name: "Kopi Tani Makmur", logo: "https://placehold.co/128x128/df2463/ffffff?text=KT" };
+---
+
+<KelolaShell storeId={idtoko} storeName={store.name} storeLogo={store.logo} active="kategori" title="Referensi Kategori">
+  <header class="mb-6">
+    <p class="text-xs font-bold uppercase tracking-[0.18em] text-amber-deep">Penjual</p>
+    <h1 class="mt-1 font-display text-3xl font-bold">Referensi Kategori</h1>
+    <p class="mt-2 text-sm text-moss">Master kategori produk yang dipakai semua toko.</p>
+  </header>
+  <StoreCategoriesManager initialCategories={categories} client:load />
+</KelolaShell>

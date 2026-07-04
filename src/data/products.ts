@@ -1,7 +1,7 @@
 import type { Product } from "../types";
 
 const image = (text: string) =>
-  `https://placehold.co/400x400/eeece4/98a29a?text=${encodeURIComponent(text)}`;
+  `https://placehold.co/400x400/d7f3fa/269dd8?text=${encodeURIComponent(text)}`;
 
 export const products: Product[] = [
   {

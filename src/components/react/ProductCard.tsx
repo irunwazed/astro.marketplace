@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { cn } from "../../lib/utils";
 import { addToCart } from "../../lib/cart";
 import { requireLogin } from "../../lib/session";
+import { flyToCart } from "../../lib/fly-to-cart";
+import { isWishlisted, toggleWishlist } from "../../lib/wishlist";
 import type { Product } from "../../types";
 
 export const formatIDR = (value: number) =>
@@ -13,16 +15,28 @@ export const formatIDR = (value: number) =>
 
 export default function ProductCard({ product }: { product: Product }) {
   const [added, setAdded] = useState(false);
+  const [wished, setWished] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    setWished(isWishlisted(product.id));
+  }, [product.id]);
 
   useEffect(() => () => clearTimeout(timer.current), []);
 
   const handleAdd = () => {
     if (!requireLogin(window.location.pathname)) return;
     addToCart(product);
+    if (imgRef.current) flyToCart(imgRef.current);
     setAdded(true);
     clearTimeout(timer.current);
     timer.current = setTimeout(() => setAdded(false), 1200);
+  };
+
+  const handleWishlist = () => {
+    if (!requireLogin(window.location.pathname)) return;
+    setWished(toggleWishlist(product.id));
   };
 
   return (
@@ -30,6 +44,7 @@ export default function ProductCard({ product }: { product: Product }) {
       <div className="relative overflow-hidden">
         <a href={`/products/${product.id}`} aria-label={`Lihat detail ${product.name}`}>
           <img
+            ref={imgRef}
             src={product.image}
             alt={product.name}
             loading="lazy"
@@ -48,13 +63,18 @@ export default function ProductCard({ product }: { product: Product }) {
         )}
         <button
           type="button"
-          aria-label={`Simpan ${product.name} ke wishlist`}
-          className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-ink/70 shadow-sm transition-colors hover:text-rose focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+          aria-label={wished ? `Hapus ${product.name} dari wishlist` : `Simpan ${product.name} ke wishlist`}
+          aria-pressed={wished}
+          onClick={handleWishlist}
+          className={cn(
+            "absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 shadow-sm transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
+            wished ? "text-rose scale-110" : "text-ink/70 hover:text-rose",
+          )}
         >
           <svg
             className="h-4 w-4"
             viewBox="0 0 24 24"
-            fill="none"
+            fill={wished ? "currentColor" : "none"}
             stroke="currentColor"
             strokeWidth="2"
             strokeLinecap="round"

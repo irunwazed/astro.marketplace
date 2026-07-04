@@ -1,7 +1,7 @@
 import { apiDelete, apiGet, apiPost, apiPut } from "./http";
 import { myStoreMembers, myStoreProducts } from "../data/my-store";
 import { dropPoints } from "../data/drop-points";
-import type { Product, Store, StoreDropPoint, StoreMember } from "../types";
+import type { KasirPaymentMethod, KasirTransaction, Product, Store, StoreDropPoint, StoreMember } from "../types";
 
 export interface StoreDetail {
   store: Store;
@@ -98,3 +98,44 @@ export function fallbackDropPoints(): StoreDropPoint[] {
 }
 
 export { dropPoints as masterDropPoints };
+
+/* ---------- Kasir ---------- */
+
+export interface KasirCheckoutPayload {
+  items: { productId: string; qty: number }[];
+  paymentMethod: KasirPaymentMethod;
+  memberNo?: string;
+  memberName?: string;
+  kasirName?: string;
+  kasirEmail?: string;
+}
+
+export function kasirCheckout(storeId: string, payload: KasirCheckoutPayload): Promise<KasirTransaction> {
+  return apiPost<KasirTransaction>(`/api/stores/${storeId}/kasir`, payload);
+}
+
+export function getKasirTransactions(storeId: string): Promise<KasirTransaction[]> {
+  return apiGet<KasirTransaction[]>(`/api/stores/${storeId}/kasir`);
+}
+
+/* ---------- Referensi Kategori ---------- */
+
+export function getCategories(): Promise<string[]> {
+  return apiGet<string[]>("/api/categories");
+}
+
+export function addCategory(name: string): Promise<string> {
+  return apiPost<string>("/api/categories", { name });
+}
+
+export function updateCategory(oldName: string, newName: string): Promise<void> {
+  return apiPut<void>("/api/categories", { oldName, newName });
+}
+
+export function removeCategory(name: string): Promise<void> {
+  return apiDelete<void>(`/api/categories?name=${encodeURIComponent(name)}`);
+}
+
+export function fallbackCategories(): string[] {
+  return ["Sembako", "Makanan & Minuman", "Kerajinan Tangan", "Pertanian Segar", "Fashion & Kain", "Kesehatan & Herbal"];
+}

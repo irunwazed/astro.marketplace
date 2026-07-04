@@ -1,11 +1,19 @@
 import type { APIRoute } from "astro";
 import { err, ok } from "../../../../../lib/server/response";
 import { removeMember, updateMember } from "../../../../../lib/server/store-members-store";
-import type { StoreMember } from "../../../../../types";
+import type { StoreMember, StoreMemberRole } from "../../../../../types";
 
 export const prerender = false;
 
-const ROLES = ["owner", "staff", "kurir"] as const;
+const ROLES: StoreMemberRole[] = [
+  "owner",
+  "manager",
+  "staff pembelian",
+  "staff verifikasi",
+  "staff",
+  "kasir",
+  "kurir",
+];
 
 interface UpdateBody {
   name?: string;
@@ -29,10 +37,10 @@ export const PUT: APIRoute = async ({ params, request }) => {
     patch.name = name;
   }
   if (body.role !== undefined) {
-    if (!(ROLES as readonly string[]).includes(body.role)) {
-      return err("Role tidak valid (owner/staff/kurir)", 400);
+    if (!(ROLES as readonly string[]).includes(body.role as StoreMemberRole)) {
+      return err("Role tidak valid", 400);
     }
-    patch.role = body.role as StoreMember["role"];
+    patch.role = body.role as StoreMemberRole;
   }
   if (body.status !== undefined) {
     if (body.status !== "aktif" && body.status !== "diundang") {

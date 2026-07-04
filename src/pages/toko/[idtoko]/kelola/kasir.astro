@@ -1,0 +1,17 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import KasirPage from "../../../../components/react/KasirPage";
+import { koperasiMembers } from "../../../../data/koperasi-members";
+import { myStore } from "../../../../data/my-store";
+
+export function getStaticPaths() {
+  return [{ params: { idtoko: "ST-1" } }, { params: { idtoko: "ST-2" } }];
+}
+
+const { idtoko } = Astro.params;
+const storeName = idtoko === "ST-1" ? myStore.name : "Kopi Tani Makmur";
+---
+
+<Layout title={`Kasir ${storeName} — Pasar Koperasi`}>
+  <KasirPage storeId={idtoko} storeName={storeName} koperasiMembers={koperasiMembers} client:load />
+</Layout>

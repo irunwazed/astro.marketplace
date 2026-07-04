@@ -5,7 +5,7 @@ interface Props {
   storeId: string;
   storeName: string;
   storeLogo?: string;
-  active: "dashboard" | "anggota" | "produk" | "droppoint";
+  active: "dashboard" | "anggota" | "produk" | "droppoint" | "kategori" | "kasir";
   title: string;
 }
 
@@ -18,6 +18,8 @@ const tabs = [
   { id: "anggota", label: "Anggota", href: `${base}/anggota`, icon: "users" },
   { id: "produk", label: "Produk", href: `${base}/produk`, icon: "box" },
   { id: "droppoint", label: "Drop Point", href: `${base}/droppoint`, icon: "pin" },
+  { id: "kategori", label: "Kategori", href: `${base}/kategori`, icon: "tag" },
+  // { id: "kasir", label: "Kasir", href: `${base}/kasir`, icon: "scan" },
 ] as const;
 
 const icons: Record<string, string> = {
@@ -25,6 +27,8 @@ const icons: Record<string, string> = {
   users: "M9 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM2.5 20c.8-3 3.4-5 6.5-5s5.7 2 6.5 5M17.5 9a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM16 15c2.5 0 4.7 1.8 5.5 4",
   box: "M21 8 12 3 3 8v8l9 5 9-5V8zM3 8l9 5 9-5M12 13v8",
   pin: "M12 21s-7-6.5-7-12a7 7 0 1 1 14 0c0 5.5-7 12-7 12zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z",
+  scan: "M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 12h10",
+  tag: "M7 7h.01M7 3h5a1.99 1.99 0 0 1 1.4.6l7.6 7.6a2 2 0 0 1 0 2.8l-5.6 5.6a2 2 0 0 1-2.8 0L5 12a2 2 0 0 1-.6-1.4V5a2 2 0 0 1 2-2Z",
   back: "m14 6-6 6 6 6",
   cart: "M2 3h2.5l2.6 12.4a1.5 1.5 0 0 0 1.5 1.1h8.9a1.5 1.5 0 0 0 1.4-1.1L21 8H6",
 };

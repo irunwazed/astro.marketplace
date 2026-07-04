@@ -9,20 +9,36 @@ import {
   updateMember,
 } from "../../services/store-service";
 import Modal from "./Modal";
-import type { StoreMember } from "../../types";
+import type { StoreMember, StoreMemberRole } from "../../types";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const ROLES: StoreMember["role"][] = ["owner", "staff", "kurir"];
+const ROLES: StoreMemberRole[] = [
+  "owner",
+  "manager",
+  "staff pembelian",
+  "staff verifikasi",
+  "staff",
+  "kasir",
+  "kurir",
+];
 
-const ROLE_LABEL: Record<StoreMember["role"], string> = {
+const ROLE_LABEL: Record<StoreMemberRole, string> = {
   owner: "Owner",
+  manager: "Manager",
+  "staff pembelian": "Staff Pembelian",
+  "staff verifikasi": "Staff Verifikasi",
   staff: "Staff",
+  kasir: "Kasir",
   kurir: "Kurir",
 };
 
-const ROLE_BADGE: Record<StoreMember["role"], string> = {
+const ROLE_BADGE: Record<StoreMemberRole, string> = {
   owner: "bg-brand text-white",
+  manager: "bg-brand-deep text-white",
+  "staff pembelian": "bg-brand/15 text-brand",
+  "staff verifikasi": "bg-brand/10 text-brand",
   staff: "bg-brand/10 text-brand",
+  kasir: "bg-amber/15 text-amber-deep",
   kurir: "bg-amber/15 text-amber-deep",
 };
 

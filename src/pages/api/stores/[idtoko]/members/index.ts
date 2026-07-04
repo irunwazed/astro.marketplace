@@ -1,12 +1,20 @@
 import type { APIRoute } from "astro";
 import { err, ok } from "../../../../../lib/server/response";
 import { addMember, getMembers } from "../../../../../lib/server/store-members-store";
-import type { StoreMember } from "../../../../../types";
+import type { StoreMember, StoreMemberRole } from "../../../../../types";
 
 export const prerender = false;
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const ROLES = ["owner", "staff", "kurir"] as const;
+const ROLES: StoreMemberRole[] = [
+  "owner",
+  "manager",
+  "staff pembelian",
+  "staff verifikasi",
+  "staff",
+  "kasir",
+  "kurir",
+];
 
 interface AddMemberBody {
   name?: string;

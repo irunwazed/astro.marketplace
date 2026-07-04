@@ -53,7 +53,7 @@ export const POST: APIRoute = async ({ params, request }) => {
     name,
     price: body.price,
     originalPrice: body.originalPrice && body.originalPrice > 0 ? body.originalPrice : undefined,
-    image: body.image || `https://placehold.co/400x400/eeece4/98a29a?text=${encodeURIComponent(name)}`,
+    image: body.image || `https://placehold.co/400x400/f2f6f9/269dd8?text=${encodeURIComponent(name)}`,
     category: body.category || body.categories[0],
     categories: body.categories,
     seller,

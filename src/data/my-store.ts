@@ -46,7 +46,7 @@ export const myStoreMembers: StoreMember[] = [
 ];
 
 const image = (text: string) =>
-  `https://placehold.co/400x400/eeece4/98a29a?text=${encodeURIComponent(text)}`;
+  `https://placehold.co/400x400/f2f6f9/269dd8?text=${encodeURIComponent(text)}`;
 
 /** Produk DRAFT milik toko — belum tampil di katalog pembeli. */
 const draftProducts: Product[] = [

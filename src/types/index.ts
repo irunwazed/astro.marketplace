@@ -57,11 +57,20 @@ export interface Store {
   dropPointIds: string[];
 }
 
+export type StoreMemberRole =
+  | "owner"
+  | "manager"
+  | "staff pembelian"
+  | "staff verifikasi"
+  | "staff"
+  | "kasir"
+  | "kurir";
+
 export interface StoreMember {
   id: string;
   name: string;
   email: string;
-  role: "owner" | "staff" | "kurir";
+  role: StoreMemberRole;
   status: "aktif" | "diundang";
 }
 
@@ -168,4 +177,36 @@ export interface UserProfile {
   email: string;
   bio: string;
   avatar: string;
+}
+
+/** Anggota koperasi (bukan anggota toko) — untuk lookup saat checkout kasir. */
+export interface KoperasiMember {
+  memberNo: string;
+  name: string;
+  email: string;
+  phone?: string;
+}
+
+export type KasirPaymentMethod = "cash" | "qris" | "transfer";
+
+/** Transaksi hasil checkout kasir toko (offline, tanpa pengiriman). */
+export interface KasirTransaction {
+  id: string;
+  storeId: string;
+  storeName: string;
+  /** Nama & email kasir yang memproses (dari session login). */
+  kasirName: string;
+  kasirEmail: string;
+  /** Nomor & nama anggota koperasi yang belanja (opsional). */
+  memberNo?: string;
+  memberName?: string;
+  items: OrderItem[];
+  subtotal: number;
+  /** Biaya admin — selalu 0 di kasir (QRIS statis, cash, transfer manual). */
+  adminFee: number;
+  total: number;
+  paymentMethod: KasirPaymentMethod;
+  /** ISO datetime transaksi. */
+  datetime: string;
+  status: "selesai";
 }

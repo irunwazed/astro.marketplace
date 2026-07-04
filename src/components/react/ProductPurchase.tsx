@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { addToCart } from "../../lib/cart";
 import { requireLogin } from "../../lib/session";
+import { flyToCart } from "../../lib/fly-to-cart";
 import { getProduct } from "../../services/product-service";
 import { formatIDR } from "./ProductCard";
 import type { Product } from "../../types";
@@ -10,6 +11,9 @@ export default function ProductPurchase({ product }: { product: Product }) {
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
   const [busy, setBusy] = useState(false);
+
+  // Ambil elemen gambar produk dari parent page (id="product-detail-image").
+  const findImg = () => document.getElementById("product-detail-image") as HTMLImageElement | null;
 
   const changeQty = (delta: number) =>
     setQty(Math.min(Math.max(1, qty + delta), product.stock));
@@ -27,6 +31,8 @@ export default function ProductPurchase({ product }: { product: Product }) {
     if (!requireLogin(window.location.pathname)) return;
     setBusy(true);
     addToCart(await freshProduct(), qty);
+    const img = findImg();
+    if (img) flyToCart(img);
     setBusy(false);
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
@@ -36,6 +42,8 @@ export default function ProductPurchase({ product }: { product: Product }) {
     if (!requireLogin(window.location.pathname)) return;
     setBusy(true);
     addToCart(await freshProduct(), qty);
+    const img = findImg();
+    if (img) flyToCart(img);
     window.location.href = "/cart";
   };
 

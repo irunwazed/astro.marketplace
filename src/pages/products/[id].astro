@@ -33,7 +33,7 @@ const discount = product.originalPrice
 
     <div class="mt-5 grid gap-8 lg:grid-cols-[1fr_1fr_300px]">
       <div class="relative overflow-hidden rounded-2xl border border-ink/10">
-        <img src={product.image} alt={product.name} class="aspect-square w-full object-cover" />
+        <img id="product-detail-image" src={product.image} alt={product.name} class="aspect-square w-full object-cover" />
         {
           product.badge && (
             <span
